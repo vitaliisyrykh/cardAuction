@@ -1,9 +1,10 @@
 import Express from 'express';
-import AuctionController from '../../controllers/AuctionController';
-import checkAdminMw from '../../middlewares/checkAdmin.mw';
+import AuctionController from '../controllers/AuctionController';
+import checkAdminMw from '../middlewares/checkAdmin.mw';
+import betRouter from './betRouter';
 
 const auctionRoute = Express.Router({
-  mergeParams:true
+  mergeParams: true
 });
 
 auctionRoute
@@ -16,4 +17,6 @@ auctionRoute
   .get(AuctionController.findAuction)
   .delete(checkAdminMw, AuctionController.deleteAuction);
 
-  export default auctionRoute;
+auctionRoute.use('/bets', betRouter);
+
+export default auctionRoute;
