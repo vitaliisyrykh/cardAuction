@@ -2,7 +2,7 @@ import UserModel from '../models/UserModel';
 import UserErrors from '../errors/UserErrors';
 
 class UserRepository {
-  async createUser (body) {
+  async create (body) {
     try {
       const { name, password_hash, email } = body;
       const { attributes } = await new UserModel({
@@ -44,7 +44,7 @@ class UserRepository {
       console.log(error, '<<< Find User Error');
     }
   }
-  async userRole (userId) {
+  async role (userId) {
     try {
       const roleModel = await new UserModel({ id: userId }).fetch({
         withRelated: ['roles']
@@ -55,7 +55,7 @@ class UserRepository {
       console.log(error, '<<< User Role Error');
     }
   }
-  async userDelete (userId) {
+  async delete (userId) {
     try {
       const deletedUser = await new UserModel({ id: userId }).destroy();
       return deletedUser ? { isDeletedUser: true } : { isDeletedUser: false };
@@ -63,7 +63,7 @@ class UserRepository {
       console.log(error, '<<< User Delete Error');
     }
   }
-  async userUpdate (userId, body) {
+  async update (userId, body) {
     try {
       const updatedUser = await new UserModel({ id: userId }).save(body, {
         method: 'update',

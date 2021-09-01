@@ -1,7 +1,7 @@
 import RaitingModel from '../models/RaitingModel';
 
 class RaitingRepository {
-  async addRaiting (userId, body) {
+  async add (userId, body) {
     const { value } = body;
     try {
       const addedRaiting = await new RaitingModel({
@@ -13,7 +13,7 @@ class RaitingRepository {
       console.log(error, '<<< Cannot add raiting');
     }
   }
-  async updateRaiting (userId, body) {
+  async update (userId, body) {
     const { value } = body;
     try {
       const updatingRaiting = await new RaitingModel({

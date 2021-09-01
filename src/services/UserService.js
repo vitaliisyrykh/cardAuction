@@ -1,9 +1,9 @@
 import * as bcrypt from 'bcryptjs';
-import UserRepository from '../../repository/UserRepository';
+import UserRepository from '../repositorys/UserRepository';
 
 class UserService {
-  createUser (body) {
-    return UserRepository.createUser(body);
+  create (body) {
+    return UserRepository.create(body);
   }
   findAll () {
     return UserRepository.findAll();
@@ -24,14 +24,14 @@ class UserService {
       console.log(error, '<<< User service password compare error');
     }
   }
-  userRole (userId) {
-    return UserRepository.userRole(userId);
+  role (userId) {
+    return UserRepository.role(userId);
   }
-  userUpdate (userId, body) {
-    return UserRepository(userId, body);
+  update (userId, body) {
+    return UserRepository.update(userId, body);
   }
-  userDelete (userId) {
-    return UserRepository.userDelete(userId);
+  delete (userId) {
+    return UserRepository.delete(userId);
   }
 }
 

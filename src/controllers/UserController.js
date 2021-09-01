@@ -1,16 +1,22 @@
 import createHttpError from 'http-errors';
 import UserService from '../services/UserService';
 import RoleService from '../services/RoleService';
+import constants from '../constants';
 
 class UserController {
-  async createUser (req, res, next) {
+  async create (req, res, next) {
     const { body } = req;
     try {
-      const createdUser = await UserService.createUser(body);
+      const createdUser = await UserService.create(body);
       if (createdUser) {
-        return res.status(201).send(createdUser);
+        const payload = {
+          data:[createdUser],
+          message:'',
+          status: constants.statusCreated
+        }
+        return res.send(payload);
       }
-      return res.send(createHttpError(400, `Can't create usser`));
+      return res.send(createHttpError(constants.statusBadRequest, `Can't create usser`));
     } catch (error) {
       next(createHttpError(error));
     }
@@ -40,13 +46,13 @@ class UserController {
       next(error);
     }
   }
-  async userUpdate (req, res, next) {
+  async update (req, res, next) {
     const {
       params: { userId },
       body
     } = req;
     try {
-      const isUpdatedUser = UserService.userUpdate(userId, body);
+      const isUpdatedUser = UserService.update(userId, body);
       if (isUpdatedUser) {
         return res.status(201).next(isUpdatedUser);
       }
@@ -55,12 +61,12 @@ class UserController {
       next(error);
     }
   }
-  async userDelete (req, res, next) {
+  async delete (req, res, next) {
     const {
       params: { userId }
     } = req;
     try {
-      const isDeletedUser = await UserService.userDelete(userId);
+      const isDeletedUser = await UserService.delete(userId);
       if (isDeletedUser) {
         res.status(200).send(isDeletedUser);
       }
@@ -70,7 +76,7 @@ class UserController {
     }
   }
 
-  async addRoleToUser (req, res, next) {
+  async addRole (req, res, next) {
     const {
       body: { userId }
     } = req;

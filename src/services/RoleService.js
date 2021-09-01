@@ -1,7 +1,7 @@
 import RoleRepository from '../repository/RoleRepository';
 
 class RoleService {
-  addUserRole (userId) {
+  addRole (userId) {
     return RoleRepository.addRoleToUser(userId);
   }
 }

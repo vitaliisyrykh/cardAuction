@@ -15,5 +15,6 @@ class RoleRepository {
       console.log(error, '<<< Add Role Error');
     }
   }
+  
 }
 export default new RoleRepository();
