@@ -1,13 +1,13 @@
-// Update with your config settings.
+import constants from '../constants';
 
 module.exports = {
   development: {
-    client: 'pg',
+    client: constants.client,
     connection: {
-      host: 'localhost',
-      user: 'postgres',
-      password: '123456',
-      database: 'test',
+      host: constants.host,
+      user: constants.dbUser,
+      password: constants.password,
+      database: constants.base,
       charset: 'utf8'
     },
     migrations: {

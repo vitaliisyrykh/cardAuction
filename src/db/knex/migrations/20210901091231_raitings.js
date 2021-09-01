@@ -6,7 +6,7 @@ exports.up = function (knex) {
       .references('id')
       .inTable('users')
       .onDelete('CASCADE');
-    t.decimal('value', 2, 1).nullable();
+    t.decimal('value', 4, 1).nullable();
   });
 };
 
