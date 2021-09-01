@@ -1,4 +1,4 @@
-import AuctionRepository from '../repository/AuctionRepository';
+import AuctionRepository from '../repositorys/AuctionRepository';
 
 class AuctionService {
   createAuction (body) {
