@@ -20,7 +20,8 @@ class UserRepository {
 
       const allUsers = await User.fetchPage({
         page: pageNum,
-        pageSize: pageSize
+        pageSize: pageSize,
+        withRelated:['raiting']
       }).then(resData => {
         return resData.models.map(m => {
           return { name: m.attributes.name, id: m.attributes.id };
@@ -37,7 +38,7 @@ class UserRepository {
   }
   async findOne (attribut, value) {
     try {
-      const user = await UserModel.where(attribut, value).fetch();
+      const user = await UserModel.where(attribut, value).fetch({withRelated:['raiting']});
       return user.attributes;
     } catch (error) {
       console.log(error, '<<< Find User Error');
