@@ -1,14 +1,14 @@
 import BetRepository from '../repositories/BetRepository';
 
 class BetService {
-  createBet (body) {
-    return BetRepository.createBet(body);
+  create (body) {
+    return BetRepository.create(body);
   }
-  findBet (betId) {
-    return BetRepository.findBet(betId);
+  findOne (betId) {
+    return BetRepository.findOne(betId);
   }
-  updateBet (betId, body) {
-    return BetRepository.updateBet(betId, body);
+  update (betId, body) {
+    return BetRepository.update(betId, body);
   }
 }
 export default new BetService();

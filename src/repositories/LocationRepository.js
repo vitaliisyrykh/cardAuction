@@ -1,7 +1,7 @@
 import LocationModel from '../models/LocationModel';
 
 class LoactionRepository {
-  async addLocation (body) {
+  async add (body) {
     try {
       const { cardId, name, type, dimension, residents, url } = body;
       const addedLocation = await new LocationModel({

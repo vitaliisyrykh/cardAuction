@@ -2,7 +2,7 @@ import createHttpError from 'http-errors';
 import BetService from '../services/BetService';
 
 class BetController {
-  async createBet (req, res, next) {
+  async create (req, res, next) {
     const { body } = req;
     try {
       const createdBet = await BetService.createBet(body);
@@ -14,7 +14,7 @@ class BetController {
       next(error);
     }
   }
-  async findBet (req, res, next) {
+  async findOne (req, res, next) {
     const {
       params: { betId }
     } = req;
@@ -28,7 +28,7 @@ class BetController {
       next(error);
     }
   }
-  async updateBet (req, res, next) {
+  async update (req, res, next) {
     const {
       params: { betId },
       body

@@ -3,7 +3,7 @@ import ServerError from '../errors/ServerError';
 
 
 class AuctionRepository {
-  async createAuction (body) {
+  async create (body) {
     const {
       userId,
       userCardsId,
@@ -71,7 +71,7 @@ class AuctionRepository {
       console.log(error, '<<< Cannot find auction');
     }
   }
-  async deleteAuction (auctionId) {
+  async delete (auctionId) {
     try {
       const deltedAuctionId = await AuctionModel({ id: auctionId }).destroy();
       return deltedAuctionId;

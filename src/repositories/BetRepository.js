@@ -1,7 +1,7 @@
 import BetModel from '../models/BetModel';
 
 class BetRepository {
-  async createBet (body) {
+  async create (body) {
     const { userId, auctionId, value } = body;
     try {
       const createdBet = await new BetModel({
@@ -17,7 +17,7 @@ class BetRepository {
       console.log(error,'<<< Cannot create bet');
     }
   }
-  async findBet (betId){
+  async findOne (betId){
     try {
       const bet = await BetModel.where('id', betId);
       return bet.attributes
@@ -25,7 +25,7 @@ class BetRepository {
       console.log(error,'<<< Cannot findBet');
     }
   }
-  async updateBet(betId,body){
+  async update(betId,body){
     const{value}=body;
     try {
       const updatedBet = await new BetModel({id:betId}).save({value}, {

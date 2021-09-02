@@ -1,7 +1,7 @@
 import GenderModel from '../models/GenderModel';
 
 class GenderRrepository{
-  async createGender(body){
+  async create(body){
     const {type}=body;
     try {
       const createdGender = await new GenderModel({type}).save(null,{method:'insert'});
@@ -10,7 +10,7 @@ class GenderRrepository{
       console.log(error, '<<< Cannot create gender');
     }
   }
-  async findAllGenders(){
+  async findAll(){
     try {
       const allGenders = await new GenderModel().fetchAll();
       return allGenders

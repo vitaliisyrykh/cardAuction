@@ -1,7 +1,7 @@
 import RefreshToken from '../models/RefreshTokenModel';
 
 class RefreshTokenRepository {
-  async addRefreshToken (userId, { value }) {
+  async add (userId, { value }) {
     try {
       const { attributes } = await new RefreshToken({
         user_id: userId,
@@ -36,7 +36,7 @@ class RefreshTokenRepository {
       console.log(error, '<<< Cannot Get Refresh Token ');  
     }
   }
-  async updateRefreshToken (userId, tokenId, value) {
+  async update (userId, tokenId, value) {
     try {
       const updatedRefreshToken = await new RefreshToken()
         .where({ user_id: userId, id: tokenId })

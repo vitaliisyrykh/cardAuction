@@ -2,7 +2,7 @@ import createHttpError from 'http-errors';
 import AuctionService from '../services/AuctionService';
 
 class AuctionController {
-  async createAuction (req, res, next) {
+  async create (req, res, next) {
     const { body } = req;
     try {
       const createdAuction = await AuctionService.createAuction(body);
@@ -14,7 +14,7 @@ class AuctionController {
       next(error);
     }
   }
-  async findAllAuctions (req, res, next) {
+  async findAll (req, res, next) {
     const { body } = req;
     try {
       const auctions = await AuctionService.findAll(body);
@@ -26,7 +26,7 @@ class AuctionController {
       next(error);
     }
   }
-  async findAuction (req, res, next) {
+  async findOne (req, res, next) {
     const {
       params: { auctionId }
     } = req;
@@ -40,7 +40,7 @@ class AuctionController {
       next(error);
     }
   }
-  async deleteAuction (req, res, next) {
+  async delete (req, res, next) {
     const {
       params: { auctionId }
     } = req;

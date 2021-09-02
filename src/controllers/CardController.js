@@ -2,7 +2,7 @@ import * as createHttpError from 'http-errors';
 import CardService from '../services/CardService';
 
 class CardController {
-  async createCard (req, res, next) {
+  async create (req, res, next) {
     try {
       const { body } = req;
       const createdCard = await CardService(body);
@@ -15,7 +15,7 @@ class CardController {
     }
   }
 
-  async findAllCards (req, res, next) {
+  async findAll (req, res, next) {
     try {
       const allCards = await CardService.findAll();
       if (allCards.length !== 0) {
@@ -56,7 +56,7 @@ class CardController {
       next(error);
     }
   }
-  async updateCard (req, res, next) {
+  async update (req, res, next) {
     try {
       const {
         params: { cardId },
@@ -72,7 +72,7 @@ class CardController {
     }
   }
 
-  async findOneCard (req, res, next) {
+  async findOne (req, res, next) {
     try {
       const {
         params: { cardId }
@@ -86,7 +86,7 @@ class CardController {
       next(error);
     }
   }
-  async deleteCard (req, res, next) {
+  async delete (req, res, next) {
     try {
       const {
         params: { cardId }

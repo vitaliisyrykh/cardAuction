@@ -3,7 +3,7 @@ import CardModel from '../models/CardModel';
 import UserModel from '../models/UserModel';
 
 class CardRepository {
-  async createCard (body) {
+  async create (body) {
     try {
       const { name, type, origin, image, url, episodeId, locationId } = body;
       const { attributes } = await new CardModel({
@@ -29,7 +29,7 @@ class CardRepository {
       console.log(error, '<<< Create Card Error');
     }
   }
-  async findAllCards (pageNum, pageSize) {
+  async findAll (pageNum, pageSize) {
     try {
       const allCards = await CardModel()
         .fetchPage({
@@ -75,7 +75,7 @@ class CardRepository {
       console.log(error, '<<< Cannot Add Card To User');
     }
   }
-  async updateCard (cardId, body) {
+  async update (cardId, body) {
     try {
       const updatedCard = await new CardsModel({ id: cardId }).save(body, {
         method: 'update',

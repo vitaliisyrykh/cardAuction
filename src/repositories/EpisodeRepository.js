@@ -1,7 +1,7 @@
 import EpisodeModel from '../models/EpisodeModel';
 
 class EpisodeRepository {
-  async addEpisode (body) {
+  async add (body) {
     try {
       const { name, airDate, url } = body;
       const addedEpisode = await new EpisodeModel({

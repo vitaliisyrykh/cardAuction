@@ -1,17 +1,17 @@
 import CardsRepository from '../repositories/CardRepository';
 
 class CardService {
-  createCard (body) {
-    return CardsRepository.createCard(body);
+  create (body) {
+    return CardsRepository.create(body);
   }
   findAll () {
-    return CardsRepository.findAllCards();
+    return CardsRepository.findAll();
   }
   findOne(cardId){
     return CardsRepository.findOne(cardId);
   }
-  updateCard (cardId, body) {
-    return CardsRepository.updateCard(cardId, body);
+  update (cardId, body) {
+    return CardsRepository.update(cardId, body);
   }
   addCardToUser (userId, cardId) {
     return CardsRepository.addCardToUser(userId, cardId);

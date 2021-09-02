@@ -1,8 +1,8 @@
 import RefreshTokenRepository from '../repositories/RefreshTokenRepository';
 
 class RefreshTokenService {
-  addRefreshToken (userId, value) {
-    return RefreshTokenRepository.addRefreshToken(userId, value);
+  add (userId, value) {
+    return RefreshTokenRepository.add(userId, value);
   }
   countTokens (userId) {
     return RefreshTokenRepository.countTokens(userId);
@@ -10,8 +10,8 @@ class RefreshTokenService {
   getRefreshTokenId (userId) {
     return RefreshTokenRepository.getRefreshTokenId(userId);
   }
-  updateRefreshToken (userId, tokenId, value) {
-    return RefreshTokenRepository.updateRefreshToken(userId, tokenId, value);
+  update (userId, tokenId, value) {
+    return RefreshTokenRepository.update(userId, tokenId, value);
   }
 };
 
