@@ -1,4 +1,5 @@
 import constants from '../constants';
+import createHttpError from 'http-errors';
 
 const payload = (status = '', data = [], message = '', err = '') => ({
   status,
@@ -7,30 +8,41 @@ const payload = (status = '', data = [], message = '', err = '') => ({
   err
 });
 
-export const created = (data,res) => {
-  return (res
+export const created = (res, data) =>
+  res
     .status(constants.statusCreated)
-    .send(payload(constants.statusCreated, data)));
-};
+    .send(payload(constants.statusCreated, data));
 
-export const noContent = data => res.status(constants.statusNoContent).send(payload(constants.statusNoContent, data, '', ''));
-;
+export const noContent = (res, data) =>
+  res
+    .status(constants.statusNoContent)
+    .send(payload(constants.statusNoContent, data, '', ''));
 
-export const success = data => {
-  console.log(data);
-  return res
+export const success = (res, data) =>
+  res
     .status(constants.statusOk)
     .send(payload(constants.statusOk, data, '', ''));
-};
 
-export const errorCreated = (err, message) => {
-  return res
+export const errorCreated = (res, message) =>
+  res
     .status(constants.statusBadRequest)
-    .send(payload(constants.statusBadRequest, [], message, err));
-};
+    .send(
+      payload(
+        constants.statusBadRequest,
+        [],
+        message,
+        createHttpError(constants.statusBadRequest, message)
+      )
+    );
 
-export const errorSuccess = (err, message) => {
-  return res
+export const unsuccess = (res, message) =>
+  res
     .status(constants.statusNotfound)
-    .send(payload(constants.statusNotfound, [], message, err));
-};
+    .send(
+      payload(
+        constants.statusNotfound,
+        [],
+        message,
+        createHttpError(constants.statusNotfound, message)
+      )
+    );
