@@ -1,7 +1,7 @@
 import express from 'express';
-import UserController from '../../controllers/UserController';
-import auctionRoute from '../auctionRouter';
-import cardsRouter from '../cardsRouter';
+import UserController from '../controllers/UserController';
+import auctionRoute from './auctionRouter';
+import cardsRouter from './cardsRouter';
 
 
 const adminRouter = express.Router({
@@ -10,9 +10,9 @@ const adminRouter = express.Router({
 adminRouter
   .route('/users/')
   .get(UserController.findAll)
-  .patch(UserController.userUpdate)
-  .delete(userRouter.delete);
-adminRouter.route('/user-role/').patch(UserController.addRoleToUser);
+  .patch(UserController.update)
+  .delete(UserController.delete);
+adminRouter.route('/user-role/').patch(UserController.addRole);
 
 adminRouter.use('/cards',cardsRouter);
 adminRouter.use('/auctions', auctionRoute);

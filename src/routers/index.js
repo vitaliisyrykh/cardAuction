@@ -1,7 +1,7 @@
 import express from 'express'
 import usersRouter from './usersRouter';
 import authRouter from './authRouter';
-import { checkAccessToken } from '../middlewares/checkToken.mw';
+import { checkAccessToken } from '../middlewares/checkToken';
 
 const router = express.Router()
 

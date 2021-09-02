@@ -1,7 +1,7 @@
 import express from 'express';
-import authController from '../../controllers/authController';
-import { checkRefreshToken } from '../../middlewares/checkToken.mw';
-import hashPass from '../../middlewares/hashPass.mw';
+import authController from '../controllers/AuthController';
+import { checkRefreshToken } from '../middlewares/checkToken';
+import hashPass from '../middlewares/hashPassword';
 
 const authRouter = express.Router();
 

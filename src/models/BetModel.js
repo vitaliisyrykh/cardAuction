@@ -1,6 +1,6 @@
 import bookshelf from '../db';
 
-export default Bet = bookshelf.model('Bet', {
+ const Bet = bookshelf.model('Bet', {
   tableName: 'bets',
   user () {
     return this.belongsTo('User');
@@ -9,3 +9,5 @@ export default Bet = bookshelf.model('Bet', {
     return this.belongsTo('Auction');
   }
 });
+
+export default Bet;

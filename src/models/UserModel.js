@@ -1,7 +1,7 @@
 import bookshelf from '../db';
 import UserCards from './UserCardsModel';
 import UserRoles from './UserRolesModel';
-import UsersChatsModel from './UsersChats';
+import UsersChatsModel from './UserChatsModel';
 
 
 const UserModel = bookshelf.model('User', {

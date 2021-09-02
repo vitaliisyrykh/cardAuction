@@ -2,8 +2,8 @@ import http from 'http';
 import {Server}  from 'socket.io';
 import app  from './app';
 
-const httpServer = http.createServer(app);
-const io = new Server(httpServer);
+const server = http.createServer(app);
+//const io = new Server(httpServer);
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {

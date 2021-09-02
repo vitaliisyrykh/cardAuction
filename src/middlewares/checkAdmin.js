@@ -1,5 +1,5 @@
 import * as createHttpError from 'http-errors';
-import CONSTANTS from '../../constants';
+import CONSTANTS from '../constants';
 
 export default (req, res, next) => {
   const {

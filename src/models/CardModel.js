@@ -1,5 +1,5 @@
 import bookshelf from '../db';
-import SetsCards from './SetsCardsModel';
+//import SetsCards from './SetsCardsModel';
 import UserCards from './UserCardsModel';
 
 const CardsModel = bookshelf.model('Card', {
@@ -13,9 +13,9 @@ const CardsModel = bookshelf.model('Card', {
   users () {
     return this.belongsToMany('User').through(UserCards);
   },
-  sets () {
+  /* sets () {
     return this.belongsToMany('Set').through(SetsCards);
-  },
+  }, */
   gender () {
     return this.belongsTo('Gender');
   }

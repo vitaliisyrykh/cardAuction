@@ -1,5 +1,5 @@
 import UserModel from '../models/UserModel';
-import UserErrors from '../errors/UserErrors';
+import UserErrors from '../errors/UserError';
 
 class UserRepository {
   async create (body) {

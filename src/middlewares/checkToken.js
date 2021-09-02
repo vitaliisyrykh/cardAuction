@@ -1,4 +1,4 @@
-import {verifyAccesToken, verifyRefreshToken} from '../server/services/JWTservices';
+import {verifyAccesToken, verifyRefreshToken} from '../services/JWTservice';
 import createHttpError from 'http-errors';
 
 

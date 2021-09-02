@@ -1,4 +1,4 @@
-import BetRepository from '../repositorys/BetRepository';
+import BetRepository from '../repositories/BetRepository';
 
 class BetService {
   createBet (body) {

@@ -1,6 +1,6 @@
 import Express from 'express';
 import AuctionController from '../controllers/AuctionController';
-import checkAdminMw from '../middlewares/checkAdmin.mw';
+import checkAdminMw from '../middlewares/checkAdmin';
 import betRouter from './betRouter';
 
 const auctionRoute = Express.Router({

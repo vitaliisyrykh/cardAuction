@@ -1,9 +1,9 @@
 import express from 'express';
-import checkAdminMW from '../middlewares/checkAdmin.mw';
+import checkAdminMW from '../middlewares/checkAdmin';
 import UserController from '../controllers/UserController';
-import cardsRouter from '../cardsRouter';
-import adminRouter from '../adminRouter';
-import betRouter from '../betRouter';
+import cardsRouter from './cardsRouter';
+import adminRouter from './adminEndPoint';
+import betRouter from './betRouter';
 
 const userRouter = express.Router();
 

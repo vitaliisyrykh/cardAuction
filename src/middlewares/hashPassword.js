@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcryptjs';
-import CONSTANTS from '../../constants';
+import CONSTANTS from '../constants';
 
 export default async (req, res, next) => {
   try {

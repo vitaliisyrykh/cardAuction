@@ -1,6 +1,6 @@
 import express from 'express';
-import CardController from '../../controllers/CardController';
-import checkAdminMw from '../../middlewares/checkAdmin.mw';
+import CardController from '../controllers/CardController';
+import checkAdminMw from '../middlewares/checkAdmin';
 
 const cardsRouter = express.Router({
   mergeParams: true

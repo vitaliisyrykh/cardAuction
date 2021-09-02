@@ -1,4 +1,4 @@
-import RefreshTokenRepository from '../../repositories/RefreshTokenRepository';
+import RefreshTokenRepository from '../repositories/RefreshTokenRepository';
 
 class RefreshTokenService {
   addRefreshToken (userId, value) {

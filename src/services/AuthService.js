@@ -1,8 +1,8 @@
-import CONSTANTS from '../../constants';
-import { createTokenPair } from './JWTservices';
+import CONSTANTS from '../constants';
+import { createTokenPair } from './JWTservice';
 import RefreshTokenService from './RefreshTokenService';
 import UserService from './UserService';
-import UserErrors from '../errors/UserErrors';
+import UserErrors from '../errors/UserError';
 
 class AuthService {
   getTokenPayload (user) {
