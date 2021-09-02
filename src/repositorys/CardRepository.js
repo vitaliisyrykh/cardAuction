@@ -5,15 +5,15 @@ import UserModel from '../models/UserModel';
 class CardRepository {
   async createCard (body) {
     try {
-      const { name, type, origin, image, url, episodeId, locationId } = body;
+      const { name, type, origin, image, url, episodeId, genderId } = body;
       const { attributes } = await new CardModel({
         name: name,
         type: type,
         origin: origin,
         image: image,
         url: url,
-        episodeId: episodeId,
-        locationId: locationId
+        episode_id: episodeId,
+        gender_id: genderId
       }).save(null, { method: 'insert', autoRefresh: true });
       return {
         name: attributes.name,
@@ -35,7 +35,7 @@ class CardRepository {
         .fetchPage({
           page: pageNum,
           pageSize,
-          withRelated: ['locations', 'episodes']
+          withRelated: ['locations', 'episodes', 'genders']
         })
         .then(resData => {
           return resData.models.map(m => ({
@@ -89,17 +89,17 @@ class CardRepository {
   async findOne (cardId) {
     try {
       const card = await CardModel({ id: cardId }).fetch({
-        withRelated: ['locations', 'episodes']
+        withRelated: ['locations', 'episodes', 'genders']
       });
       return card;
     } catch (error) {
       console.log(error, '<<< Cannot find card');
     }
   }
-  async delete(cardId){
+  async delete (cardId) {
     try {
-      const deletedCard = await CardModel({id:cardId}).destroy();
-      return deletedCard
+      const deletedCard = await CardModel({ id: cardId }).destroy();
+      return deletedCard;
     } catch (error) {
       console.log(error, '<<< Cannot delete card');
     }
