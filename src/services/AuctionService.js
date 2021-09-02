@@ -1,5 +1,6 @@
 import AuctionRepository from '../repositories/AuctionRepository';
 
+
 class AuctionService {
   createAuction (body) {
     return AuctionRepository.createAuction(body);
