@@ -1,4 +1,4 @@
-import CardsRepository from '../repository/CardsRepository';
+import CardsRepository from '../repositories/CardsRepository';
 
 class CardService {
   createCard (body) {

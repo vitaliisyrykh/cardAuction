@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcryptjs';
-import UserRepository from '../repositorys/UserRepository';
+import UserRepository from '../repositories/UserRepository';
 
 class UserService {
   create (body) {

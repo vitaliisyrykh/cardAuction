@@ -1,4 +1,4 @@
-import RoleRepository from '../repository/RoleRepository';
+import RoleRepository from '../repositories/RoleRepository';
 
 class RoleService {
   addRole (userId) {
