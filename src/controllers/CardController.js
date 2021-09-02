@@ -1,15 +1,20 @@
-import * as createHttpError from 'http-errors';
 import CardService from '../services/CardService';
-
+import {
+  errorCreated,
+  created,
+  success,
+  unsuccess,
+  noContent
+} from '../utils/resFuncs';
 class CardController {
   async createCard (req, res, next) {
     try {
       const { body } = req;
       const createdCard = await CardService(body);
       if (createdCard) {
-        return res.status(201).send(createdCard);
+        return created(res, createdCard);
       }
-      next(createHttpError(400, 'Cannot create card'));
+      return errorCreated(res, 'Cannot create card');
     } catch (error) {
       next(error);
     }
@@ -17,11 +22,11 @@ class CardController {
 
   async findAllCards (req, res, next) {
     try {
-      const allCards = await CardService.findAll();
+      const cards = await CardService.findAll();
       if (allCards.length !== 0) {
-        return res.status(200).send(allCards);
+        return success(res, cards)
       }
-      next(createHttpError(400, 'Cannot find cards'));
+      return unsuccess(res, 'Not found') 
     } catch (error) {
       next(error);
     }
@@ -34,9 +39,9 @@ class CardController {
       } = req;
       const addedCardToUser = CardService.addCardToUser(userId, cardId);
       if (addedCardToUser) {
-        return res.status(201).send(addedCardToUser);
+        return success(res, addedCardToUser);
       }
-      return next(createHttpError(400, 'Cannot add card to user'));
+      return unsuccess(res, 'Cannot add card to user');
     } catch (error) {
       next(error);
     }
@@ -49,9 +54,9 @@ class CardController {
       } = req;
       const userCards = await CardService.userCards(userId);
       if (userCards) {
-        return res.status(200).send(userCards);
+        return success(res, userCards)
       }
-      return next(createHttpError(400, 'Cannot find user cards'));
+      return unsuccess(res, 'Cannot find cards by this user')
     } catch (error) {
       next(error);
     }
@@ -64,9 +69,9 @@ class CardController {
       } = req;
       const updatedCard = await CardService.updateCard(cardId, body);
       if (updatedCard) {
-        return res.status(200).send(updatedCard);
+        return success(res, updatedCard);
       }
-      return next(createHttpError(400, ' Cannot updaete card'));
+      return unsuccess(res, 'Cannot update card');
     } catch (error) {
       next(error);
     }
@@ -79,9 +84,9 @@ class CardController {
       } = req;
       const card = await CardService.findOne(cardId);
       if (card) {
-        return res.status(200).send(card);
+        return success(res, card);
       }
-      return next(createHttpError(404, 'Cannot find card'));
+      return unsuccess(res, 'Not found');
     } catch (error) {
       next(error);
     }
@@ -93,9 +98,9 @@ class CardController {
       } = req;
       const deletedCard = await CardService.delete(cardId);
       if (deletedCard) {
-        return res.status(200).send(deletedCard);
+        return noContent(res, deletedCard);
       }
-      return next(createHttpError(400, 'Cannot delete card'));
+      return unsuccess(res, 'Cannot delete this card')
     } catch (error) {
       next(error);
     }
