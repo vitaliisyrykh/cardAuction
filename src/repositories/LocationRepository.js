@@ -1,7 +1,7 @@
-import LocationModel from '../models/LocationModel';
+import LocationModel from "../models/LocationModel";
 
 class LoactionRepository {
-  async add (body) {
+  async add(body) {
     try {
       const { cardId, name, type, dimension, residents, url } = body;
       const addedLocation = await new LocationModel({
@@ -10,11 +10,11 @@ class LoactionRepository {
         type,
         dimension,
         residents,
-        url
+        url,
       });
       return addedLocation;
     } catch (error) {
-      console.log(error, '<<< Cannot add location');
+      console.log(error, "<<< Cannot add location");
     }
   }
 }

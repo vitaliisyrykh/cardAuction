@@ -1,17 +1,16 @@
-import AuctionRepository from '../repositories/AuctionRepository';
-
+import AuctionRepository from "../repositories/AuctionRepository";
 
 class AuctionService {
-  create (body) {
+  create(body) {
     return AuctionRepository.create(body);
   }
-  findAll (body) {
+  findAll(body) {
     return AuctionRepository.findAll(body);
   }
-  findOne (auctionId) {
+  findOne(auctionId) {
     return AuctionRepository.findOne(auctionId);
   }
-  delete (auctionId) {
+  delete(auctionId) {
     return AuctionRepository.delete(auctionId);
   }
 }

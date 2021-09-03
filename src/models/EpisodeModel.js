@@ -1,10 +1,10 @@
-import bookshelf from '../db';
+import bookshelf from "../db";
 
-const EpisodeModel = bookshelf.model('Episode',{
-  tablename:'episodes',
-  card(){
-    return this.belongsTo('Card')
-  }
+const EpisodeModel = bookshelf.model("Episode", {
+  tablename: "episodes",
+  card() {
+    return this.belongsTo("Card");
+  },
 });
 
 export default EpisodeModel;

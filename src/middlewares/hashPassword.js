@@ -1,10 +1,10 @@
-import * as bcrypt from 'bcryptjs';
-import CONSTANTS from '../constants';
+import * as bcrypt from "bcryptjs";
+import CONSTANTS from "../constants";
 
 export default async (req, res, next) => {
   try {
     const {
-      body: { password }
+      body: { password },
     } = req;
     const salt = await bcrypt.genSalt(Number(CONSTANTS.SALT_ROUNDS));
     req.passHash = await bcrypt.hash(password, salt);

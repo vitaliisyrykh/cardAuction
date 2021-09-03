@@ -1,13 +1,13 @@
-import bookshelf from '../db';
+import bookshelf from "../db";
 
-const UsersChatsModel = bookshelf.model('UsersChats',{
-  tableName:'users_chats',
-  users(){
-    return this.belongsTo('User')
+const UsersChatsModel = bookshelf.model("UsersChats", {
+  tableName: "users_chats",
+  users() {
+    return this.belongsTo("User");
   },
-  chats(){
-    return this.belongsTo('Chat')
-  }
-})
+  chats() {
+    return this.belongsTo("Chat");
+  },
+});
 
 export default UsersChatsModel;

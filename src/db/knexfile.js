@@ -1,4 +1,4 @@
-import constants from '../constants';
+import constants from "../constants";
 
 module.exports = {
   development: {
@@ -8,13 +8,13 @@ module.exports = {
       user: constants.dbUser,
       password: constants.password,
       database: constants.base,
-      charset: 'utf8'
+      charset: "utf8",
     },
     migrations: {
-      directory: __dirname + '/knex/migrations'
+      directory: __dirname + "/knex/migrations",
     },
     seeds: {
-      directory: __dirname + '/knex/seeds'
-    }
-  }
+      directory: __dirname + "/knex/seeds",
+    },
+  },
 };

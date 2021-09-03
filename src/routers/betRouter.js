@@ -1,13 +1,13 @@
-import express from 'express';
-import BetController from '../controllers/BetController';
+import express from "express";
+import BetController from "../controllers/BetController";
 
 const betRouter = express.Router({
-  mergeParams: true
+  mergeParams: true,
 });
 
-betRouter.post('/', BetController.createBet);
+betRouter.post("/", BetController.createBet);
 betRouter
-  .route('/:betId')
+  .route("/:betId")
   .get(BetController.findBet)
   .patch(BetController.updateBet);
 

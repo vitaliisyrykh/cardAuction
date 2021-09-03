@@ -1,6 +1,6 @@
-import http from 'http';
-import {Server}  from 'socket.io';
-import app  from './app';
+import http from "http";
+import { Server } from "socket.io";
+import app from "./app";
 
 const server = http.createServer(app);
 //const io = new Server(httpServer);

@@ -1,13 +1,13 @@
-import bookshelf from '../db';
+import bookshelf from "../db";
 
- const Bet = bookshelf.model('Bet', {
-  tableName: 'bets',
-  user () {
-    return this.belongsTo('User');
+const Bet = bookshelf.model("Bet", {
+  tableName: "bets",
+  user() {
+    return this.belongsTo("User");
   },
-  auction () {
-    return this.belongsTo('Auction');
-  }
+  auction() {
+    return this.belongsTo("Auction");
+  },
 });
 
 export default Bet;

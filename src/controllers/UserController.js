@@ -1,91 +1,93 @@
-import createHttpError from 'http-errors';
-import UserService from '../services/UserService';
-import RoleService from '../services/RoleService';
-import constants from '../constants';
+import createHttpError from "http-errors";
+import UserService from "../services/UserService";
+import RoleService from "../services/RoleService";
+import constants from "../constants";
 
 class UserController {
-  async create (req, res, next) {
+  async create(req, res, next) {
     const { body } = req;
     try {
       const createdUser = await UserService.create(body);
       if (createdUser) {
         const payload = {
-          data:[createdUser],
-          message:'',
-          status: constants.statusCreated
-        }
+          data: [createdUser],
+          message: "",
+          status: constants.statusCreated,
+        };
         return res.send(payload);
       }
-      return res.send(createHttpError(constants.statusBadRequest, `Can't create usser`));
+      return res.send(
+        createHttpError(constants.statusBadRequest, `Can't create usser`)
+      );
     } catch (error) {
       next(createHttpError(error));
     }
   }
-  async findAll (req, res, next) {
+  async findAll(req, res, next) {
     try {
       const users = await UserService.findAll();
       if (!users) {
         return res.status(201).send(users);
       }
-      return res.send(createHttpError(404, 'Users not found'));
+      return res.send(createHttpError(404, "Users not found"));
     } catch (error) {
       next(createHttpError(404, error));
     }
   }
-  async findOne (req, res, next) {
+  async findOne(req, res, next) {
     const {
-      params: { userId }
+      params: { userId },
     } = req;
     try {
-      const user = await UserService.findOne('id', userId);
+      const user = await UserService.findOne("id", userId);
       if (user) {
         return res.status(201).send(user);
       }
-      return res.send(createHttpError(401, 'Cannot update user'));
+      return res.send(createHttpError(401, "Cannot update user"));
     } catch (error) {
       next(error);
     }
   }
-  async update (req, res, next) {
+  async update(req, res, next) {
     const {
       params: { userId },
-      body
+      body,
     } = req;
     try {
       const isUpdatedUser = UserService.update(userId, body);
       if (isUpdatedUser) {
         return res.status(201).next(isUpdatedUser);
       }
-      return res.send(createHttpError(401, 'Cannot update user'));
+      return res.send(createHttpError(401, "Cannot update user"));
     } catch (error) {
       next(error);
     }
   }
-  async delete (req, res, next) {
+  async delete(req, res, next) {
     const {
-      params: { userId }
+      params: { userId },
     } = req;
     try {
       const isDeletedUser = await UserService.delete(userId);
       if (isDeletedUser) {
         res.status(200).send(isDeletedUser);
       }
-      next(createHttpError(400, 'Cannot delete user'));
+      next(createHttpError(400, "Cannot delete user"));
     } catch (error) {
       next(error);
     }
   }
 
-  async addRole (req, res, next) {
+  async addRole(req, res, next) {
     const {
-      body: { userId }
+      body: { userId },
     } = req;
     try {
       const addedRoleToUser = await RoleService.addUserRole(userId);
       if (addedRoleToUser) {
         return res.status(200);
       }
-      return next(createHttpError(400, 'Cannot add role to user'));
+      return next(createHttpError(400, "Cannot add role to user"));
     } catch (error) {
       next(error);
     }

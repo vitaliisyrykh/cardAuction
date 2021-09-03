@@ -1,9 +1,8 @@
-import AuctionModel from '../models/AuctionModel';
-import ServerError from '../errors/ServerError';
-
+import AuctionModel from "../models/AuctionModel";
+import ServerError from "../errors/ServerError";
 
 class AuctionRepository {
-  async create (body) {
+  async create(body) {
     const {
       userId,
       userCardsId,
@@ -11,7 +10,7 @@ class AuctionRepository {
       maxBet,
       minStep,
       maxTimeBidding,
-      minStepAddTime
+      minStepAddTime,
     } = body;
     try {
       const createdAuction = await new AuctionModel({
@@ -21,21 +20,21 @@ class AuctionRepository {
         max_bet: maxBet,
         min_step: minStep,
         max_time_bidding: maxTimeBidding,
-        min_step_add_time: minStepAddTime
-      }).save(null, { method: 'isert' });
+        min_step_add_time: minStepAddTime,
+      }).save(null, { method: "isert" });
       return createdAuction;
     } catch (error) {
-      console.log(error, '<<<Cannot create auction');
+      console.log(error, "<<<Cannot create auction");
     }
   }
-  async findAll (body) {
-    const{pageNum, pageSize} = body;
+  async findAll(body) {
+    const { pageNum, pageSize } = body;
     try {
       const findAll = await AuctionModel.fetchPage({
         page: pageNum,
-        pageSize: pageSize
-      }).then(resData => {
-        return resData.map(a => {
+        pageSize: pageSize,
+      }).then((resData) => {
+        return resData.map((a) => {
           return {
             auctionId: a.attributes.id,
             userId: a.attributes.user_cards_id,
@@ -43,21 +42,21 @@ class AuctionRepository {
             maxBet: a.attributes.max_bet,
             minStep: a.attributes.min_step,
             maxTimeBidding: a.attributes.max_time_bidding,
-            minStepAddTime: a.attributes.min_step_add_time
+            minStepAddTime: a.attributes.min_step_add_time,
           };
         });
       });
       if (findAll.length === 0) {
-        return new ServerError('Cannot find auctions');
+        return new ServerError("Cannot find auctions");
       }
       return findAll;
     } catch (error) {
-      console.log(error, '<<< Cannot find auctions');
+      console.log(error, "<<< Cannot find auctions");
     }
   }
-  async findOne (auctionId) {
+  async findOne(auctionId) {
     try {
-      const auction = await AuctionModel.where('id', auctionId).fetch();
+      const auction = await AuctionModel.where("id", auctionId).fetch();
       return {
         auctionId: auction.attributes.id,
         userId: auction.attributes.user_cards_id,
@@ -65,18 +64,18 @@ class AuctionRepository {
         maxBet: auction.attributes.max_bet,
         minStep: auction.attributes.min_step,
         maxTimeBidding: auction.attributes.max_time_bidding,
-        minStepAddTime: auction.attributes.min_step_add_time
+        minStepAddTime: auction.attributes.min_step_add_time,
       };
     } catch (error) {
-      console.log(error, '<<< Cannot find auction');
+      console.log(error, "<<< Cannot find auction");
     }
   }
-  async delete (auctionId) {
+  async delete(auctionId) {
     try {
       const deltedAuctionId = await AuctionModel({ id: auctionId }).destroy();
       return deltedAuctionId;
     } catch (error) {
-      console.log(error, '<<< Cannot delete auction');
+      console.log(error, "<<< Cannot delete auction");
     }
   }
 }

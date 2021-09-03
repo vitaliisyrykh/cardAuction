@@ -1,21 +1,21 @@
-import express from 'express';
-import CardController from '../controllers/CardController';
-import checkAdminMw from '../middlewares/checkAdmin';
+import express from "express";
+import CardController from "../controllers/CardController";
+import checkAdminMw from "../middlewares/checkAdmin";
 
 const cardsRouter = express.Router({
-  mergeParams: true
+  mergeParams: true,
 });
 
 cardsRouter
-  .route('/')
-  .post(checkAdminMw,CardController.createCard)
+  .route("/")
+  .post(checkAdminMw, CardController.createCard)
   .get(CardController.findAllCards);
 cardsRouter
-  .route('/:cardId')
+  .route("/:cardId")
   .get(CardController.findOneCard)
   .patch(checkAdminMw, CardController.updateCard)
   .delete(checkAdminMw, CardController.deleteCard);
 
-cardsRouter.route('/user-cards/').get(CardController.userCards);
+cardsRouter.route("/user-cards/").get(CardController.userCards);
 
 export default cardsRouter;

@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 
 const {
@@ -8,8 +8,8 @@ const {
     REFRESH_TOKEN_SECRET,
     REFRESH_TOKEN_TIME,
     MAX_DEVICES_AMOUNT,
-    SALT_ROUNDS
-  }
+    SALT_ROUNDS,
+  },
 } = process;
 
 export default {
@@ -19,20 +19,19 @@ export default {
   REFRESH_TOKEN_TIME,
   MAX_DEVICES_AMOUNT,
   SALT_ROUNDS,
-  ADMIN: 'admin',
-  SOCKET_CONNECTION: 'connection',
-  SOCKET_SUBSCRIBE: 'subscribe',
-  SOCKET_UNSUBSCRIBE: 'unsubscribe',
-  host: 'localhost',
-  dbUser: 'postgres',
-  password:'123456',
-  base:'test',
-  client: 'pg',
+  ADMIN: "admin",
+  SOCKET_CONNECTION: "connection",
+  SOCKET_SUBSCRIBE: "subscribe",
+  SOCKET_UNSUBSCRIBE: "unsubscribe",
+  host: "localhost",
+  dbUser: "postgres",
+  password: "123456",
+  base: "test",
+  client: "pg",
   statusOk: 200,
   statusCreated: 201,
   statusNoContent: 204,
   statusBadRequest: 400,
   statusUnauthorized: 401,
-  statusNotfound:404,
+  statusNotfound: 404,
 };
-

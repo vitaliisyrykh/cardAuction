@@ -1,7 +1,7 @@
-import RoleRepository from '../repositories/RoleRepository';
+import RoleRepository from "../repositories/RoleRepository";
 
 class RoleService {
-  addRole (userId) {
+  addRole(userId) {
     return RoleRepository.addRoleToUser(userId);
   }
 }

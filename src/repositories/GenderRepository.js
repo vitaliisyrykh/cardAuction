@@ -1,21 +1,23 @@
-import GenderModel from '../models/GenderModel';
+import GenderModel from "../models/GenderModel";
 
-class GenderRrepository{
-  async create(body){
-    const {type}=body;
+class GenderRrepository {
+  async create(body) {
+    const { type } = body;
     try {
-      const createdGender = await new GenderModel({type}).save(null,{method:'insert'});
+      const createdGender = await new GenderModel({ type }).save(null, {
+        method: "insert",
+      });
       return createdGender;
     } catch (error) {
-      console.log(error, '<<< Cannot create gender');
+      console.log(error, "<<< Cannot create gender");
     }
   }
-  async findAll(){
+  async findAll() {
     try {
       const allGenders = await new GenderModel().fetchAll();
-      return allGenders
+      return allGenders;
     } catch (error) {
-      console.log(error, '<<< Cannot find genders');
+      console.log(error, "<<< Cannot find genders");
     }
   }
 }

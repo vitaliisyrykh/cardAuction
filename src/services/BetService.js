@@ -1,13 +1,13 @@
-import BetRepository from '../repositories/BetRepository';
+import BetRepository from "../repositories/BetRepository";
 
 class BetService {
-  create (body) {
+  create(body) {
     return BetRepository.create(body);
   }
-  findOne (betId) {
+  findOne(betId) {
     return BetRepository.findOne(betId);
   }
-  update (betId, body) {
+  update(betId, body) {
     return BetRepository.update(betId, body);
   }
 }

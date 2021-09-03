@@ -1,26 +1,26 @@
-import CardsRepository from '../repositories/CardRepository';
+import CardsRepository from "../repositories/CardRepository";
 
 class CardService {
-  create (body) {
+  create(body) {
     return CardsRepository.create(body);
   }
-  findAll () {
+  findAll() {
     return CardsRepository.findAll();
   }
-  findOne(cardId){
+  findOne(cardId) {
     return CardsRepository.findOne(cardId);
   }
-  update (cardId, body) {
+  update(cardId, body) {
     return CardsRepository.update(cardId, body);
   }
-  addCardToUser (userId, cardId) {
+  addCardToUser(userId, cardId) {
     return CardsRepository.addCardToUser(userId, cardId);
   }
-  userCards (userId) {
+  userCards(userId) {
     return CardsRepository.userCards(userId);
   }
-  delete(cardId){
-    return CardsRepository.delete(cardId)
+  delete(cardId) {
+    return CardsRepository.delete(cardId);
   }
 }
 

@@ -1,36 +1,36 @@
-import * as bcrypt from 'bcryptjs';
-import UserRepository from '../repositories/UserRepository';
+import * as bcrypt from "bcryptjs";
+import UserRepository from "../repositories/UserRepository";
 
 class UserService {
-  create (body) {
+  create(body) {
     return UserRepository.create(body);
   }
-  findAll () {
+  findAll() {
     return UserRepository.findAll();
   }
-  findOne (attribut, value) {
+  findOne(attribut, value) {
     const user = UserRepository.findOne(attribut, value);
     return user;
   }
-  async passwordCompare (pass1, pass2) {
+  async passwordCompare(pass1, pass2) {
     try {
       const passwordCompare = await bcrypt.compare(pass1, pass2);
       if (!passwordCompare) {
-        throw new Error('Wrong Password');
+        throw new Error("Wrong Password");
       } else {
         return passwordCompare;
       }
     } catch (error) {
-      console.log(error, '<<< User service password compare error');
+      console.log(error, "<<< User service password compare error");
     }
   }
-  role (userId) {
+  role(userId) {
     return UserRepository.role(userId);
   }
-  update (userId, body) {
+  update(userId, body) {
     return UserRepository.update(userId, body);
   }
-  delete (userId) {
+  delete(userId) {
     return UserRepository.delete(userId);
   }
 }

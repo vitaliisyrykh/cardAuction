@@ -1,6 +1,6 @@
-const knex = require('knex');
-const knexFile = require('./knexfile');
-import bookshelf from 'bookshelf';
+const knex = require("knex");
+const knexFile = require("./knexfile");
+import bookshelf from "bookshelf";
 
 const db = knex(knexFile.development);
 
