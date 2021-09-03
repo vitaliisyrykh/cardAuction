@@ -3,7 +3,7 @@ import checkAdminMW from '../middlewares/checkAdmin';
 import UserController from '../controllers/UserController';
 import cardsRouter from './cardsRouter';
 import adminRouter from './adminEndPoint';
-import betRouter from './betRouter';
+import auctionRouter from './auctionRouter';
 
 const userRouter = express.Router();
 
@@ -15,6 +15,6 @@ userRouter
 
 userRouter.use('/:idUser/admin', checkAdminMW, adminRouter);
 userRouter.use('/:idUser/cards', cardsRouter);
-userRouter.use('/:idUser/bets', betRouter);
+userRouter.use('/:idUser/auctions', auctionRouter);
 
 export default userRouter;

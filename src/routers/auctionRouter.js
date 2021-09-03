@@ -3,20 +3,20 @@ import AuctionController from '../controllers/AuctionController';
 import checkAdminMw from '../middlewares/checkAdmin';
 import betRouter from './betRouter';
 
-const auctionRoute = Express.Router({
+const auctionRouter = Express.Router({
   mergeParams: true
 });
 
-auctionRoute
+auctionRouter
   .route('/')
   .post(checkAdminMw, AuctionController.createAuction)
   .get(AuctionController.findAllAuctions);
 
-auctionRoute
+auctionRouter
   .route('/:auctionId')
   .get(AuctionController.findAuction)
   .delete(checkAdminMw, AuctionController.deleteAuction);
 
-auctionRoute.use('/bets', betRouter);
+auctionRouter.use('/bets', betRouter);
 
-export default auctionRoute;
+export default auctionRouter;

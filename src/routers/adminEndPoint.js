@@ -1,6 +1,6 @@
 import express from 'express';
 import UserController from '../controllers/UserController';
-import auctionRoute from './auctionRouter';
+import auctionRouter from './auctionRouter';
 import cardsRouter from './cardsRouter';
 
 
@@ -15,6 +15,6 @@ adminRouter
 adminRouter.route('/user-role/').patch(UserController.addRole);
 
 adminRouter.use('/cards',cardsRouter);
-adminRouter.use('/auctions', auctionRoute);
+adminRouter.use('/auctions', auctionRouter);
 
 export default adminRouter;
