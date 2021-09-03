@@ -1,5 +1,5 @@
 import constants from '../constants';
-import createHttpError from 'http-errors';
+import createHttpError, { Forbidden } from 'http-errors';
 
 const payload = (status = '', data = [], message = '', err = '') => ({
   status,
@@ -8,12 +8,12 @@ const payload = (status = '', data = [], message = '', err = '') => ({
   err
 });
 
-export const created = (res, data) =>
+export const successCreated = (res, data) =>
   res
     .status(constants.statusCreated)
     .send(payload(constants.statusCreated, data));
 
-export const noContent = (res, data) =>
+export const successNoContent = (res, data) =>
   res
     .status(constants.statusNoContent)
     .send(payload(constants.statusNoContent, data, '', ''));
@@ -23,7 +23,7 @@ export const success = (res, data) =>
     .status(constants.statusOk)
     .send(payload(constants.statusOk, data, '', ''));
 
-export const errorCreated = (res, message) =>
+export const badRequestError = (res, message) =>
   res
     .status(constants.statusBadRequest)
     .send(
@@ -35,7 +35,7 @@ export const errorCreated = (res, message) =>
       )
     );
 
-export const unsuccess = (res, message) =>
+export const notFoundError = (res, message) =>
   res
     .status(constants.statusNotfound)
     .send(
@@ -46,3 +46,15 @@ export const unsuccess = (res, message) =>
         createHttpError(constants.statusNotfound, message)
       )
     );
+
+export const forBiddenError = (res, message) => 
+  res
+    .status(constants.statusForBidden)
+    .send(
+      payload(
+        constants.statusForBidden,
+        [],
+        message,
+        createHttpError(constants.statusForBidden,message)
+        )
+    );     

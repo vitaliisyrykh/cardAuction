@@ -1,10 +1,11 @@
 import CardService from '../services/CardService';
 import {
-  errorCreated,
-  created,
+  badRequestError,
+  successCreated,
   success,
-  unsuccess,
-  noContent
+  notFoundError,
+  successNoContent,
+  forBiddenError
 } from '../utils/resFuncs';
 class CardController {
   async createCard (req, res, next) {
@@ -12,9 +13,9 @@ class CardController {
       const { body } = req;
       const createdCard = await CardService(body);
       if (createdCard) {
-        return created(res, createdCard);
+        return successCreated(res, createdCard);
       }
-      return errorCreated(res, 'Cannot create card');
+      return badRequestError(res, 'Cannot create card');
     } catch (error) {
       next(error);
     }
@@ -26,7 +27,7 @@ class CardController {
       if (allCards.length !== 0) {
         return success(res, cards)
       }
-      return unsuccess(res, 'Not found') 
+      return notFoundError(res, 'Not found') 
     } catch (error) {
       next(error);
     }
@@ -41,7 +42,7 @@ class CardController {
       if (addedCardToUser) {
         return success(res, addedCardToUser);
       }
-      return unsuccess(res, 'Cannot add card to user');
+      return notFoundError(res, 'Cannot add card to user');
     } catch (error) {
       next(error);
     }
@@ -56,7 +57,7 @@ class CardController {
       if (userCards) {
         return success(res, userCards)
       }
-      return unsuccess(res, 'Cannot find cards by this user')
+      return notFoundError(res, 'Cannot find cards by this user')
     } catch (error) {
       next(error);
     }
@@ -71,7 +72,7 @@ class CardController {
       if (updatedCard) {
         return success(res, updatedCard);
       }
-      return unsuccess(res, 'Cannot update card');
+      return forBiddenError(res, 'Cannot update card');
     } catch (error) {
       next(error);
     }
@@ -86,7 +87,7 @@ class CardController {
       if (card) {
         return success(res, card);
       }
-      return unsuccess(res, 'Not found');
+      return notFoundError(res, 'Not found');
     } catch (error) {
       next(error);
     }
@@ -98,9 +99,9 @@ class CardController {
       } = req;
       const deletedCard = await CardService.delete(cardId);
       if (deletedCard) {
-        return noContent(res, deletedCard);
+        return successNoContent(res, deletedCard);
       }
-      return unsuccess(res, 'Cannot delete this card')
+      return forBiddenError(res, 'Cannot delete this card')
     } catch (error) {
       next(error);
     }

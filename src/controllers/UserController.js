@@ -1,11 +1,12 @@
 import UserService from '../services/UserService';
 import RoleService from '../services/RoleService';
 import {
-  errorCreated,
-  created,
+  badRequestError,
+  successCreated,
   success,
-  unsuccess,
-  noContent
+  notFoundError,
+  successNoContent,
+  forBiddenError
 } from '../utils/resFuncs';
 class UserController {
   async create (req, res, next) {
@@ -13,9 +14,9 @@ class UserController {
     try {
       const createdUser = await UserService.create(body);
       if (createdUser) {
-        return created(res, createdUser);
+        return successCreated(res, createdUser);
       }
-      return errorCreated(res, 'Cannot create user');
+      return badRequestError(res, 'Cannot create user');
     } catch (error) {
       next(error);
     }
@@ -26,7 +27,7 @@ class UserController {
       if (!users) {
         return success(res, users);
       }
-      return unsuccess(res, 'Not found users');
+      return notFoundError(res, 'Not found users');
     } catch (error) {
       next(error);
     }
@@ -40,7 +41,7 @@ class UserController {
       if (user) {
         return success(res, user);
       }
-      return unsuccess(res, 'Cannot find user');
+      return notFoundError(res, 'Cannot find user');
     } catch (error) {
       next(error);
     }
@@ -55,7 +56,7 @@ class UserController {
       if (isUpdatedUser) {
         return success(res, isUpdatedUser);
       }
-      return unsuccess(res, 'Cannot update user');
+      return forBiddenError(res, 'Cannot update user');
     } catch (error) {
       next(error);
     }
@@ -67,9 +68,9 @@ class UserController {
     try {
       const deletedUser = await UserService.delete(userId);
       if (deletedUser) {
-        return noContent(res, deletedUser);
+        return successNoContent(res, deletedUser);
       }
-      return unsuccess(res, 'Cannot delete user');
+      return forBiddenError(res, 'Cannot delete user');
     } catch (error) {
       next(error);
     }
@@ -84,7 +85,7 @@ class UserController {
       if (addedRoleToUser) {
         return success(res);
       }
-      return unsuccess(res, 'Cannot add role to user');
+      return forBiddenError(res, 'Cannot add role to user');
     } catch (error) {
       next(error);
     }

@@ -1,9 +1,10 @@
 import BetService from '../services/BetService';
 import {
-  errorCreated,
-  created,
+  badRequestError,
+  successCreated,
   success,
-  unsuccess,
+  notFoundError,
+  forBiddenError
 } from '../utils/resFuncs';
 
 class BetController {
@@ -12,9 +13,9 @@ class BetController {
     try {
       const createdBet = await BetService.createBet(body);
       if (createdBet) {
-        return created(res, createdBet);
+        return successCreated(res, createdBet);
       }
-      return errorCreated(res, 'Cannot create bet');
+      return badRequestError(res, 'Cannot create bet');
     } catch (error) {
       next(error);
     }
@@ -28,7 +29,7 @@ class BetController {
       if (bet) {
         return success(res, bet);
       }
-      return unsuccess(res, 'Not found card');
+      return notFoundError(res, 'Not found card');
     } catch (error) {
       next(error);
     }
@@ -43,7 +44,7 @@ class BetController {
       if (updatedBet) {
         return success(res, updatedBet);
       }
-      return unsuccess(res, 'Cannot updated');
+      return forBiddenError(res, 'Cannot updated');
     } catch (error) {
       next(error);
     }

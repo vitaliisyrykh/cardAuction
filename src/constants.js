@@ -33,6 +33,7 @@ export default {
   statusNoContent: 204,
   statusBadRequest: 400,
   statusUnauthorized: 401,
+  statusForBidden:403,
   statusNotfound:404,
 };
 

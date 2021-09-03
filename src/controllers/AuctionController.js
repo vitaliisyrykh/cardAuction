@@ -1,10 +1,11 @@
 import AuctionService from '../services/AuctionService';
 import {
-  errorCreated,
-  created,
+  badRequestError,
+  successCreated,
   success,
-  unsuccess,
-  noContent
+  notFoundError,
+  successNoContent,
+  forBiddenError
 } from '../utils/resFuncs';
 
 class AuctionController {
@@ -13,9 +14,9 @@ class AuctionController {
     try {
       const createdAuction = await AuctionService.createAuction(body);
       if (createdAuction) {
-        return created(res, createdAuction);
+        return successCreated(res, createdAuction);
       }
-      return errorCreated(res, 'Cannot create auction');
+      return badRequestError(res, 'Cannot create auction');
     } catch (error) {
       next(error);
     }
@@ -27,7 +28,7 @@ class AuctionController {
       if (auctions) {
         return success(res, auctions);
       }
-      return unsuccess(res, 'Not found');
+      return notFoundError(res, 'Not found');
     } catch (error) {
       next(error);
     }
@@ -41,7 +42,7 @@ class AuctionController {
       if (auction) {
         return success(res, auction);
       }
-      return unsuccess(res, 'Not found');
+      return notFoundError(res, 'Not found');
     } catch (error) {
       next(error);
     }
@@ -53,9 +54,9 @@ class AuctionController {
     try {
       const deletedAuction = await AuctionService.deleteAuction(auctionId);
       if (deletedAuction) {
-        return noContent(res, deletedAuction);
+        return successNoContent(res, deletedAuction);
       }
-      return unsuccess(res, 'Cannot delete');
+      return forBiddenError(res, 'Cannot delete');
     } catch (error) {
       next(error);
     }
