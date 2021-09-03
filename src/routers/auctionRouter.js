@@ -9,13 +9,13 @@ const auctionRouter = Express.Router({
 
 auctionRouter
   .route("/")
-  .post(checkAdminMw, AuctionController.createAuction)
-  .get(AuctionController.findAllAuctions);
+  .post(checkAdminMw, AuctionController.create)
+  .get(AuctionController.findAll);
 
 auctionRouter
   .route("/:auctionId")
-  .get(AuctionController.findAuction)
-  .delete(checkAdminMw, AuctionController.deleteAuction);
+  .get(AuctionController.findOne)
+  .delete(checkAdminMw, AuctionController.delete);
 
 auctionRouter.use("/bets", betRouter);
 

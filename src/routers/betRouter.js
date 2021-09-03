@@ -5,10 +5,10 @@ const betRouter = express.Router({
   mergeParams: true,
 });
 
-betRouter.post("/", BetController.createBet);
+betRouter.post("/", BetController.create);
 betRouter
   .route("/:betId")
-  .get(BetController.findBet)
-  .patch(BetController.updateBet);
+  .get(BetController.findOne)
+  .patch(BetController.update);
 
 export default betRouter;

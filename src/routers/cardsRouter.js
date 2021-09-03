@@ -8,13 +8,13 @@ const cardsRouter = express.Router({
 
 cardsRouter
   .route("/")
-  .post(checkAdminMw, CardController.createCard)
-  .get(CardController.findAllCards);
+  .post(checkAdminMw, CardController.create)
+  .get(CardController.findAll);
 cardsRouter
   .route("/:cardId")
-  .get(CardController.findOneCard)
-  .patch(checkAdminMw, CardController.updateCard)
-  .delete(checkAdminMw, CardController.deleteCard);
+  .get(CardController.findOne)
+  .patch(checkAdminMw, CardController.update)
+  .delete(checkAdminMw, CardController.delete);
 
 cardsRouter.route("/user-cards/").get(CardController.userCards);
 
