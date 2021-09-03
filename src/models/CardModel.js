@@ -1,23 +1,28 @@
 import bookshelf from "../db";
 //import SetsCards from './SetsCardsModel';
 import UserCards from "./UserCardsModel";
+import LocationsModel from'./LocationModel';
+import EpisodeModel from './EpisodeModel';
+import UserModel from './UserModel';
+import GenderModel from './GenderModel';
+
 
 const CardsModel = bookshelf.model("Card", {
   tableName: "cards",
   episode() {
-    return this.belongsTo("Episode");
+    return this.belongsTo(EpisodeModel);
   },
   locations() {
-    return this.hasMany("Location");
+    return this.hasMany(LocationsModel);
   },
   users() {
-    return this.belongsToMany("User").through(UserCards);
+    return this.belongsToMany(UserModel).through(UserCards);
   },
   /* sets () {
     return this.belongsToMany('Set').through(SetsCards);
   }, */
   gender() {
-    return this.belongsTo("Gender");
+    return this.belongsTo(GenderModel);
   },
 });
 

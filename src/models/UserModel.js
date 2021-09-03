@@ -2,29 +2,36 @@ import bookshelf from "../db";
 import UserCards from "./UserCardsModel";
 import UserRoles from "./UserRolesModel";
 import UsersChatsModel from "./UserChatsModel";
+import TransactionModel from './TransactionModel';
+import RoleModel from './RoleModel';
+import CardModel from './CardModel';
+import RaitingModel from './RaitingModel';
+import RefreshTokenModel from './RefreshTokenModel';
+import ChatModel from './ChatModel';
+import MessageModel from './MessageModel';
 
 const UserModel = bookshelf.model("User", {
   tableName: "users",
   transactions() {
-    return this.hasMany("Transaction");
+    return this.hasMany(TransactionModel);
   },
   roles() {
-    return this.belongsToMany("Role").through(UserRoles);
+    return this.belongsToMany(RoleModel).through(UserRoles);
   },
   cards() {
-    return this.belongsToMany("Card").through(UserCards);
+    return this.belongsToMany(CardModel).through(UserCards);
   },
   raiting() {
-    return this.hasOne("Raiting");
+    return this.hasOne(RaitingModel);
   },
   refreshTokens() {
-    return this.hasMany("RefreshToken", "user_id", "user_id");
+    return this.hasMany(RefreshTokenModel, "user_id", "user_id");
   },
   chats() {
-    return belongsToMany("Chats").through(UsersChatsModel);
+    return belongsToMany(ChatModel).through(UsersChatsModel);
   },
   messages() {
-    return this.hasMany("Message");
+    return this.hasMany(MessageModel);
   },
 });
 

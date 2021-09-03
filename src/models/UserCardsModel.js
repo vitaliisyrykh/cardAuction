@@ -1,15 +1,18 @@
 import bookshelf from "../db";
+import UserModel from './UserModel';
+import CardModel from './CardModel';
+import AuctionModel from './AuctionModel';
 
 const UserCards = bookshelf.model("UserCards", {
   tableName: "user_cards",
   user() {
-    return this.belongsTo("User");
+    return this.belongsTo(UserModel);
   },
   card() {
-    return this.belongsTo("Card");
+    return this.belongsTo(CardModel);
   },
   auction() {
-    return this.belongsTo("Auction");
+    return this.belongsTo(AuctionModel);
   },
 });
 

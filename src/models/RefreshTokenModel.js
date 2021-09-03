@@ -1,9 +1,10 @@
 import bookshelf from "../db";
+import UserModel from './UserModel';
 
 const RefreshToken = bookshelf.model("RefreshToken", {
   tableName: "refresh_tokens",
   user() {
-    return this.belongsTo("User", "user_id", "user_id");
+    return this.belongsTo(UserModel, "user_id", "user_id");
   },
 });
 

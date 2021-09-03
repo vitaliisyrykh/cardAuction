@@ -1,9 +1,10 @@
 import bookshelf from "../db";
+import CardModel from './CardModel';
 
 const LocationModel = bookshelf.model("Location", {
   tableName: "locations",
   card() {
-    return this.belongsTo("Card");
+    return this.belongsTo(CardModel);
   },
 });
 
