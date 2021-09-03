@@ -5,15 +5,15 @@ import UserModel from "../models/UserModel";
 class CardRepository {
   async create(body) {
     try {
-      const { name, type, origin, image, url, episodeId, locationId } = body;
+      const { name, type, origin, image, url, episodeId } = body;
       const { attributes } = await new CardModel({
         name: name,
         type: type,
         origin: origin,
         image: image,
         url: url,
-        episodeId: episodeId,
-        locationId: locationId,
+        episode_id: episodeId,
+        
       }).save(null, { method: "insert", autoRefresh: true });
       return {
         name: attributes.name,
@@ -22,7 +22,6 @@ class CardRepository {
         image: attributes.image,
         url: attributes.url,
         episode: attributes.episode,
-        location: attributes.location,
         id: attributes.id,
       };
     } catch (error) {
@@ -31,25 +30,13 @@ class CardRepository {
   }
   async findAll(pageNum, pageSize) {
     try {
-      const allCards = await CardModel()
+      const allCards = await new CardModel()
         .fetchPage({
           page: pageNum,
           pageSize,
           withRelated: ["locations", "episodes"],
-        })
-        .then((resData) => {
-          return resData.models.map((m) => ({
-            name: m.attributes.name,
-            type: m.attributes.type,
-            origin: m.attributes.origin,
-            image: m.attributes.image,
-            url: m.attributes.url,
-            episode: m.attributes.episode,
-            location: m.attributes.location,
-            id: m.attributes.id,
-          }));
         });
-      return allCards;
+      return allCards
     } catch (error) {
       console.log(error, "<<< Cannot find all cards");
     }
@@ -88,7 +75,7 @@ class CardRepository {
   }
   async findOne(cardId) {
     try {
-      const card = await CardModel({ id: cardId }).fetch({
+      const card = await new CardModel({ id: cardId }).fetch({
         withRelated: ["locations", "episodes"],
       });
       return card;

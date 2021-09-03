@@ -5,7 +5,7 @@ class CardController {
   async create(req, res, next) {
     try {
       const { body } = req;
-      const createdCard = await CardService(body);
+      const createdCard = await CardService.create(body);
       if (createdCard) {
         return res.status(201).send(createdCard);
       }

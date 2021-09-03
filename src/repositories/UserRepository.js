@@ -17,10 +17,10 @@ class UserRepository {
   }
   async findAll(pageNum, pageSize) {
     try {
-      const allUsers = await User.fetchPage({
-        page: pageNum,
-        pageSize: pageSize,
-        withRelated: ["raiting"],
+      const allUsers = await  UserModel.fetchPage({
+        page: 1,
+        pageSize: 5,
+        //withRelated: ["raiting"],
       }).then((resData) => {
         return resData.models.map((m) => {
           return { name: m.attributes.name, id: m.attributes.id };
@@ -32,15 +32,17 @@ class UserRepository {
 
       return allUsers;
     } catch (error) {
-      console.log(err, "<<< Find Users Error ");
+      console.log(error, "<<< Find Users Error ");
     }
   }
   async findOne(attribut, value) {
     try {
       const user = await UserModel.where(attribut, value).fetch({
-        withRelated: ["raiting"],
+        //withRelated: ["raiting"],
       });
+      console.log(user);
       return user.attributes;
+      
     } catch (error) {
       console.log(error, "<<< Find User Error");
     }
@@ -70,10 +72,9 @@ class UserRepository {
         method: "update",
         patch: true,
       });
-      if (updatedUser) {
-        return { isUpdatedUser: true };
-      }
-      return new UserErrors("Update Error");
+      const{id,name}=updatedUser.attributes
+      return {id,name}
+      
     } catch (error) {
       console.log(error, "<<< Update User Error");
     }

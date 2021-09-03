@@ -26,7 +26,7 @@ class UserController {
   async findAll(req, res, next) {
     try {
       const users = await UserService.findAll();
-      if (!users) {
+      if (users) {
         return res.status(201).send(users);
       }
       return res.send(createHttpError(404, "Users not found"));
@@ -43,7 +43,7 @@ class UserController {
       if (user) {
         return res.status(201).send(user);
       }
-      return res.send(createHttpError(401, "Cannot update user"));
+      return res.send(createHttpError(401, "Cannot find user"));
     } catch (error) {
       next(error);
     }
@@ -54,9 +54,10 @@ class UserController {
       body,
     } = req;
     try {
-      const isUpdatedUser = UserService.update(userId, body);
-      if (isUpdatedUser) {
-        return res.status(201).next(isUpdatedUser);
+      const updatedUser = await UserService.update(userId, body);
+      
+      if (updatedUser) {
+        return res.status(201).send(updatedUser);
       }
       return res.send(createHttpError(401, "Cannot update user"));
     } catch (error) {
