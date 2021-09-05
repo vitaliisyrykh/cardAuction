@@ -10,7 +10,7 @@ class RoleRepository {
         .attach(admin);
       return roleAdded;
     } catch (error) {
-      console.log(error, "<<< Add Role Error");
+      return error;
     }
   }
 }

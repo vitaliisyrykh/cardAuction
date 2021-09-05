@@ -9,7 +9,7 @@ class GenderRrepository {
       });
       return createdGender;
     } catch (error) {
-      console.log(error, "<<< Cannot create gender");
+      return error;
     }
   }
   async findAll() {
@@ -17,7 +17,7 @@ class GenderRrepository {
       const allGenders = await new GenderModel().fetchAll();
       return allGenders;
     } catch (error) {
-      console.log(error, "<<< Cannot find genders");
+      return error;
     }
   }
 }

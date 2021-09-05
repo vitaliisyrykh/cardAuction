@@ -10,7 +10,7 @@ class RaitingRepository {
       }).save(null, { methods: "insert" });
       return addedRaiting;
     } catch (error) {
-      console.log(error, "<<< Cannot add raiting");
+      return error;
     }
   }
   async update(userId, body) {
@@ -22,7 +22,7 @@ class RaitingRepository {
       }).save(null, { method: "update", patch: true });
       return updatingRaiting;
     } catch (error) {
-      console.log(error, "<<< Cannot update raiting");
+      return error;
     }
   }
 }

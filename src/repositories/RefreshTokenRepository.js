@@ -9,7 +9,7 @@ class RefreshTokenRepository {
       }).save();
       return attributes;
     } catch (error) {
-      console.log(error, "<<< Add Refresh Token Error");
+      return error;
     }
   }
   async countTokens(userId) {
@@ -20,7 +20,7 @@ class RefreshTokenRepository {
 
       return count;
     } catch (error) {
-      console.log(error, "<<< Token count error ");
+      return error;
     }
   }
   async getRefreshTokenId(userId) {
@@ -31,7 +31,7 @@ class RefreshTokenRepository {
 
       return oldRefreshToken.id;
     } catch (error) {
-      console.log(error, "<<< Cannot Get Refresh Token ");
+      return error;
     }
   }
   async update(userId, tokenId, value) {
@@ -42,7 +42,7 @@ class RefreshTokenRepository {
 
       return updatedRefreshToken.value;
     } catch (error) {
-      console.log(error, "<<< Cannot Update Refresh Token ");
+      return error;
     }
   }
   async findRefreshTokenUserId(tokeValue) {
@@ -52,7 +52,7 @@ class RefreshTokenRepository {
         .fetch();
       return userId.attributes.id;
     } catch (error) {
-      console.log(error, "<<< Cannot Find By User ID");
+      return error;
     }
   }
 }

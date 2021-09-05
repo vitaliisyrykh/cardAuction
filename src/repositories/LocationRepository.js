@@ -14,7 +14,7 @@ class LoactionRepository {
       });
       return addedLocation;
     } catch (error) {
-      console.log(error, "<<< Cannot add location");
+      return error;
     }
   }
 }

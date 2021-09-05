@@ -12,12 +12,12 @@ class UserRepository {
       }).save(null, { method: "insert", autoRefresh: true });
       return { id: attributes.id, name: attributes.name };
     } catch (error) {
-      console.log(error, "<<< Create User error");
+      return error;
     }
   }
   async findAll(pageNum, pageSize) {
     try {
-      const allUsers = await  UserModel.fetchPage({
+      const allUsers = await UserModel.fetchPage({
         page: 1,
         pageSize: 5,
         //withRelated: ["raiting"],
@@ -32,19 +32,17 @@ class UserRepository {
 
       return allUsers;
     } catch (error) {
-      console.log(error, "<<< Find Users Error ");
+      return error;
     }
   }
   async findOne(attribut, value) {
     try {
       const user = await UserModel.where(attribut, value).fetch({
-        //withRelated: ["raiting"],
+        withRelated: ["raiting"],
       });
-      console.log(user);
       return user.attributes;
-      
     } catch (error) {
-      console.log(error, "<<< Find User Error");
+      return error;
     }
   }
   async role(userId) {
@@ -55,7 +53,7 @@ class UserRepository {
       const [roles] = roleModel.relations.roles.models;
       return roles.attributes;
     } catch (error) {
-      console.log(error, "<<< User Role Error");
+      return error;
     }
   }
   async delete(userId) {
@@ -63,7 +61,7 @@ class UserRepository {
       const deletedUser = await new UserModel({ id: userId }).destroy();
       return deletedUser ? { isDeletedUser: true } : { isDeletedUser: false };
     } catch (error) {
-      console.log(error, "<<< User Delete Error");
+      return error;
     }
   }
   async update(userId, body) {
@@ -72,11 +70,10 @@ class UserRepository {
         method: "update",
         patch: true,
       });
-      const{id,name}=updatedUser.attributes
-      return {id,name}
-      
+      const { id, name } = updatedUser.attributes;
+      return { id, name };
     } catch (error) {
-      console.log(error, "<<< Update User Error");
+      return error;
     }
   }
 }

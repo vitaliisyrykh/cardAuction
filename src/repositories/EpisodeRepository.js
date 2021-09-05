@@ -11,7 +11,7 @@ class EpisodeRepository {
       });
       return addedEpisode;
     } catch (error) {
-      console.log(error, "<<< Cannot add episode");
+      return error;
     }
   }
 }

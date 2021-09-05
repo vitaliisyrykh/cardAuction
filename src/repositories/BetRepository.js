@@ -14,7 +14,7 @@ class BetRepository {
         value: createdBet.attributes.value,
       };
     } catch (error) {
-      console.log(error, "<<< Cannot create bet");
+      return error;
     }
   }
   async findOne(betId) {
@@ -22,7 +22,7 @@ class BetRepository {
       const bet = await BetModel.where("id", betId);
       return bet.attributes;
     } catch (error) {
-      console.log(error, "<<< Cannot findBet");
+      return error;
     }
   }
   async update(betId, body) {
@@ -37,7 +37,7 @@ class BetRepository {
       );
       return updatedBet;
     } catch (error) {
-      console.log(error, "<<< Cannot update bet");
+      return error;
     }
   }
 }

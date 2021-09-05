@@ -25,7 +25,7 @@ class CardRepository {
         id: attributes.id,
       };
     } catch (error) {
-      console.log(error, "<<< Create Card Error");
+      return error;
     }
   }
   async findAll(pageNum, pageSize) {
@@ -38,7 +38,7 @@ class CardRepository {
         });
       return allCards
     } catch (error) {
-      console.log(error, "<<< Cannot find all cards");
+      return error;
     }
   }
 
@@ -50,7 +50,7 @@ class CardRepository {
       const [cards] = userWithCards.relations.cards.models;
       return cards.attributes;
     } catch (error) {
-      console.log(error, "<<< Cannot find cards with user");
+      return error;
     }
   }
   async addCardToUser(userId, cardId) {
@@ -59,7 +59,7 @@ class CardRepository {
       const cardAdded = await new UserModel({ id: userId }).cards().atach(card);
       return cardAdded;
     } catch (error) {
-      console.log(error, "<<< Cannot Add Card To User");
+      return error;
     }
   }
   async update(cardId, body) {
@@ -70,7 +70,7 @@ class CardRepository {
       });
       return updatedCard;
     } catch (error) {
-      console.log(error, "<<< Cannot update card");
+      return error;
     }
   }
   async findOne(cardId) {
@@ -88,7 +88,7 @@ class CardRepository {
       const deletedCard = await CardModel({ id: cardId }).destroy();
       return deletedCard;
     } catch (error) {
-      console.log(error, "<<< Cannot delete card");
+      return error;
     }
   }
 }

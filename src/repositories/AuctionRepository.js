@@ -24,7 +24,7 @@ class AuctionRepository {
       }).save(null, { method: "isert" });
       return createdAuction;
     } catch (error) {
-      console.log(error, "<<<Cannot create auction");
+      return error;
     }
   }
   async findAll(body) {
@@ -51,7 +51,7 @@ class AuctionRepository {
       }
       return findAll;
     } catch (error) {
-      console.log(error, "<<< Cannot find auctions");
+      return error;
     }
   }
   async findOne(auctionId) {
@@ -67,7 +67,7 @@ class AuctionRepository {
         minStepAddTime: auction.attributes.min_step_add_time,
       };
     } catch (error) {
-      console.log(error, "<<< Cannot find auction");
+      return error;
     }
   }
   async delete(auctionId) {
@@ -75,7 +75,7 @@ class AuctionRepository {
       const deltedAuctionId = await AuctionModel({ id: auctionId }).destroy();
       return deltedAuctionId;
     } catch (error) {
-      console.log(error, "<<< Cannot delete auction");
+      return error;
     }
   }
 }
