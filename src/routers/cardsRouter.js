@@ -1,6 +1,7 @@
 import express from "express";
 import CardController from "../controllers/CardController";
 import checkAdminMw from "../middlewares/checkAdmin";
+import { auctionValidate } from '../middlewares/validator';
 
 const cardsRouter = express.Router({
   mergeParams: true,
@@ -8,7 +9,7 @@ const cardsRouter = express.Router({
 
 cardsRouter
   .route("/")
-  .post(checkAdminMw, CardController.create)
+  .post(checkAdminMw, auctionValidate, CardController.create)
   .get(CardController.findAll);
 cardsRouter
   .route("/:cardId")
