@@ -4,6 +4,7 @@ import UserController from "../controllers/UserController";
 import cardsRouter from "./cardsRouter";
 import adminRouter from "./adminEndPoint";
 import auctionRouter from "./auctionRouter";
+import chatRouter from './chatRouter';
 
 const userRouter = express.Router();
 
@@ -16,5 +17,6 @@ userRouter
 userRouter.use("/:userId/admin", checkAdminMW, adminRouter);
 userRouter.use("/:userId/cards", cardsRouter);
 userRouter.use("/:userId/auctions", auctionRouter);
+userRouter.use("/:userId/chats", chatRouter)
 
 export default userRouter;
