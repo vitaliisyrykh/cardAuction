@@ -2,7 +2,7 @@ import bookshelf from "../db";
 import UserCards from "./UserCardsModel";
 import UserRoles from "./UserRolesModel";
 import UsersChatsModel from "./UserChatsModel";
-import TransactionModel from './TransactionModel';
+//import TransactionModel from './TransactionModel';
 import RoleModel from './RoleModel';
 import CardModel from './CardModel';
 import RaitingModel from './RaitingModel';
@@ -12,9 +12,9 @@ import MessageModel from './MessageModel';
 
 const UserModel = bookshelf.model("User", {
   tableName: "users",
-  transactions() {
+ /*  transactions() {
     return this.hasMany(TransactionModel);
-  },
+  }, */
   roles() {
     return this.belongsToMany(RoleModel).through(UserRoles);
   },
@@ -28,7 +28,7 @@ const UserModel = bookshelf.model("User", {
     return this.hasMany(RefreshTokenModel, "user_id", "user_id");
   },
   chats() {
-    return belongsToMany(ChatModel).through(UsersChatsModel);
+    return this.belongsToMany(ChatModel).through(UsersChatsModel);
   },
   messages() {
     return this.hasMany(MessageModel);

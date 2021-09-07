@@ -7,6 +7,9 @@ class ChatService {
   findAllUserChats(userId){
     return ChatRepository.findAllUserChats(userId);
   }
+  findOne(chatId){
+    return ChatRepository.findOne(chatId)
+  }
 }
 
 export default new ChatService()
