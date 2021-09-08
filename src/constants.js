@@ -24,6 +24,7 @@ export default {
   socketEventDisconnect: "disconnect",
   socketEventNewMessage: "newMessage",
   socketEventNewMessageError: "error",
+  socketRoomChat:'chat',
   host: "localhost",
   dbUser: "postgres",
   password: "123456",
