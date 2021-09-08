@@ -4,7 +4,7 @@ const chatRouter = express.Router({
   mergeParams:true
 });
 
-chatRouter.route('/').get(ChatController.findAllUserChats);
-chatRouter.route('/:chatId').get(ChatController.findOne);
+chatRouter.route('/').get(ChatController.findAll).post(ChatController.newMessage);
+
 
 export default chatRouter;

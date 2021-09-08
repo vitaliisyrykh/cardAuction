@@ -2,25 +2,24 @@ import MessageModel from '../models/MessageModel';
 import ChatModel from '../models/ChatModel';
 
 class MessageRepository{
-  async save(userId,chatId,bodyMessage){
+  async save(body){
+    const{userId,bodyMessage}=body;
     try {
       const savedMessage = await new MessageModel({
         user_id:userId,
-        chat_id:chatId,
         body:bodyMessage,
       }).save(null,{method:'insert'});
-      return savedMessage;
+      return savedMessage.attributes;
     } catch (error) {
       console.log(error);
       return error
     }
   }
-  async findAllChatMessages(chatId){
+  async findAll(){
     try {
-      const messages = await new ChatModel({id:chatId}).fetch({withRelated:'messages'});
-      return messages.relations.messages.map(m=>m.attributes);
+      const messages = await  MessageModel.fetchAll();
+      return messages;
     } catch (error) {
-      console.log(error);
       return error
     }
   }
