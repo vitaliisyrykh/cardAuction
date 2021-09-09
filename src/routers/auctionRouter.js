@@ -2,6 +2,7 @@ import Express from "express";
 import AuctionController from "../controllers/AuctionController";
 import checkAdminMw from "../middlewares/checkAdmin";
 import betRouter from "./betRouter";
+import { auctionValidate } from '../middlewares/validator';
 
 const auctionRouter = Express.Router({
   mergeParams: true,
@@ -9,7 +10,7 @@ const auctionRouter = Express.Router({
 
 auctionRouter
   .route("/")
-  .post(checkAdminMw, AuctionController.create)
+  .post(checkAdminMw, auctionValidate, AuctionController.create)
   .get(AuctionController.findAll);
 
 auctionRouter
