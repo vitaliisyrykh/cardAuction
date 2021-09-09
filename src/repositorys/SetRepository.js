@@ -11,7 +11,7 @@ class SetRepository {
       }).save(null, { method: 'isert' });
       return { id: attributes.id, name: attributes.name, score: attributes.id };
     } catch (error) {
-      console.log(error, '<<< Cannot create set');
+      return error
     }
   }
   async addCardToSet (setId, cardId) {
@@ -20,7 +20,7 @@ class SetRepository {
       const addedCard = await new SetModel({ id: setId }).cards().attach(card);
       return addedCard;
     } catch (error) {
-      console.log(error, '<<< Cannot add card to set');
+      return error
     }
   }
   async deleteSet (setId) {
@@ -28,7 +28,7 @@ class SetRepository {
       const deletedSet = await new SetModel({ id: setId }).destroy();
       return deletedSet;
     } catch (error) {
-      console.log(error);
+      return error
     }
   }
   async findAllWithCards () {
@@ -38,7 +38,7 @@ class SetRepository {
       });
       return allSetsWithCards;
     } catch (error) {
-      console.log(error, '<<< Cannot find sets with cards');
+      return error
     }
   }
 }
