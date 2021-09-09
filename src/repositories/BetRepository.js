@@ -1,44 +1,41 @@
-import BetModel from "../models/BetModel";
+import BetModel from '../models/BetModel';
 
 class BetRepository {
-  async create(body) {
+  async createBet (body) {
     const { userId, auctionId, value } = body;
     try {
       const createdBet = await new BetModel({
         user_id: userId,
         auction_id: auctionId,
-        value,
-      }).save(null, { methods: "insert" });
+        value
+      }).save(null, { methods: 'insert' });
       return {
         id: createdBet.attributes.id,
-        value: createdBet.attributes.value,
+        value: createdBet.attributes.value
       };
     } catch (error) {
       return error;
     }
   }
-  async findOne(betId) {
+  async findBet (betId){
     try {
-      const bet = await BetModel.where("id", betId);
-      return bet.attributes;
+      const bet = await BetModel.where('id', betId);
+      return bet.attributes
     } catch (error) {
       return error;
     }
   }
-  async update(betId, body) {
-    const { value } = body;
+  async updateBet(betId,body){
+    const{value}=body;
     try {
-      const updatedBet = await new BetModel({ id: betId }).save(
-        { value },
-        {
-          method: "update",
-          patch: true,
-        }
-      );
+      const updatedBet = await new BetModel({id:betId}).save({value}, {
+        method: 'update',
+        patch: true
+      });
       return updatedBet;
     } catch (error) {
-      return error;
+      return error
     }
   }
 }
-export default new BetRepository();
+export default new BetRepository()
