@@ -1,36 +1,37 @@
-import MessageService from '../services/MessageService';
-/* import {
+import MessageService from "../services/MessageService";
+import {
   badRequestError,
   successCreated,
   success,
-} from '../utils/resFuncs'; */
+  notFoundError,
+} from "../utils/resFuncs";
+import { emitSocketMessage } from "../services/socketService";
 
-import constants from '../constants';
-import {chat} from '../services/socketService'
-//import io from 'socket.io'
-class ChatController{
-  async newMessage (req,res,next){
+class ChatController {
+  async newMessage(req, res, next) {
     try {
-      const savedMessage = await MessageService.save(req.body)
-      
-      chat.emit(constants.socketEventNewMessage, savedMessage)
-      res.status(200).end()
+      const savedMessage = await MessageService.save(req.body);
+      if (savedMessage) {
+        emitSocketMessage(savedMessage);
+        return successCreated(res, savedMessage);
+      }
+      return badRequestError(res, "Message cannot save");
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
 
-  async findAll (req,res,next){
+  async findAll(req, res, next) {
     try {
       const messages = await MessageService.findAll();
-      if(messages.length !== 0){
-        return res.send(messages)
+      if (messages.length === 0) {
+        return notFoundError(res, "Messages not found");
       }
+      return success(res, messages);
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
-  
 }
 
 export default new ChatController();
