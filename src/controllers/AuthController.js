@@ -1,15 +1,16 @@
-import createHttpError from "http-errors";
-import AuthService from "../services/AuthService";
+
+import AuthService from '../services/AuthService';
+import { successCreated, badRequestError, forBiddenError } from '../utils/resFuncs';
 
 class AuthController {
   async signUp(req, res, next) {
     try {
       const { body, passHash } = req;
-      const data = AuthService.singUp(body, passHash);
+      const data = await AuthService.singUp(body, passHash);
       if (data) {
-        res.status(201).send(data);
+        return successCreated(res, data);
       }
-      next(createHttpError(400, "Sign Up Error"));
+      return badRequestError(res, 'Sign Up Error');
     } catch (error) {
       next(error);
     }
@@ -17,22 +18,15 @@ class AuthController {
   async signIn(req, res, next) {
     try {
       const { body } = req;
-      const data = AuthService.signIn(body);
+      const data = await AuthService.signIn(body);
       if (data) {
-        return res.status(201).send(data);
+        return successCreated(res, data);
       }
-      next(createHttpError(401, "Wrong password or email"));
+      return forBiddenError(res, 'Wrong password or email');
     } catch (error) {
       next(error);
     }
   }
-  /*   async refreshToken (req, res, next) {
-    try {
-      const {
-        body: { refreshToken }
-      } = req;
-    } catch (error) {}
-  } */
 }
 
 export default new AuthController();

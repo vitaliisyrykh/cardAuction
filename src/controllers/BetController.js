@@ -1,15 +1,21 @@
-import createHttpError from "http-errors";
-import BetService from "../services/BetService";
 
+import BetService from '../services/BetService';
+import {
+  badRequestError,
+  successCreated,
+  success,
+  notFoundError,
+  forBiddenError
+} from '../utils/resFuncs';
 class BetController {
   async create(req, res, next) {
     const { body } = req;
     try {
       const createdBet = await BetService.createBet(body);
       if (createdBet) {
-        return res.status(201).send(createdBet);
+        return successCreated(res, createdBet);
       }
-      return next(createHttpError(400, "Cannot create bet"));
+      return badRequestError(res, 'Cannot create bet');
     } catch (error) {
       next(error);
     }
@@ -21,9 +27,9 @@ class BetController {
     try {
       const bet = await BetService.findBet(betId);
       if (bet) {
-        return res.status(200).send(bet);
+        return success(res, bet);
       }
-      return next(createHttpError(400, "Cannot find bet"));
+      return notFoundError(res, 'Not found card');
     } catch (error) {
       next(error);
     }
@@ -36,9 +42,9 @@ class BetController {
     try {
       const updatedBet = await BetService.updateBet(betId, body);
       if (updatedBet) {
-        return res.status(200).send(updatedBet);
+        return success(res, updatedBet);
       }
-      return next(createHttpError(400, "Cannot update bet"));
+      return forBiddenError(res, 'Cannot updated');
     } catch (error) {
       next(error);
     }

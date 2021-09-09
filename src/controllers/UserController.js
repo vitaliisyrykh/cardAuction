@@ -1,7 +1,13 @@
-import createHttpError from "http-errors";
 import UserService from "../services/UserService";
 import RoleService from "../services/RoleService";
-import constants from "../constants";
+import {
+  badRequestError,
+  successCreated,
+  success,
+  notFoundError,
+  successNoContent,
+  forBiddenError,
+} from "../utils/resFuncs";
 
 class UserController {
   async create(req, res, next) {
@@ -9,29 +15,23 @@ class UserController {
     try {
       const createdUser = await UserService.create(body);
       if (createdUser) {
-        const payload = {
-          data: [createdUser],
-          message: "",
-          status: constants.statusCreated,
-        };
-        return res.send(payload);
+        return successCreated(res, createdUser);
       }
-      return res.send(
-        createHttpError(constants.statusBadRequest, `Can't create usser`)
-      );
+      return badRequestError(res, "Cannot create user");
     } catch (error) {
-      next(createHttpError(error));
+      next(error);
     }
   }
   async findAll(req, res, next) {
     try {
       const users = await UserService.findAll();
-      if (users) {
-        return res.status(201).send(users);
+
+      if (!users) {
+        return success(res, users);
       }
-      return res.send(createHttpError(404, "Users not found"));
+      return notFoundError(res, "Not found users");
     } catch (error) {
-      next(createHttpError(404, error));
+      next(error);
     }
   }
   async findOne(req, res, next) {
@@ -41,9 +41,10 @@ class UserController {
     try {
       const user = await UserService.findOne("id", userId);
       if (user) {
-        return res.status(201).send(user);
+        return success(res, user);
       }
-      return res.send(createHttpError(401, "Cannot find user"));
+
+      return notFoundError(res, "Cannot find user");
     } catch (error) {
       next(error);
     }
@@ -54,12 +55,11 @@ class UserController {
       body,
     } = req;
     try {
-      const updatedUser = await UserService.update(userId, body);
-      
-      if (updatedUser) {
-        return res.status(201).send(updatedUser);
+      const isUpdatedUser = UserService.update(userId, body);
+      if (isUpdatedUser) {
+        return success(res, isUpdatedUser);
       }
-      return res.send(createHttpError(401, "Cannot update user"));
+      return forBiddenError(res, "Cannot update user");
     } catch (error) {
       next(error);
     }
@@ -69,11 +69,12 @@ class UserController {
       params: { userId },
     } = req;
     try {
-      const isDeletedUser = await UserService.delete(userId);
-      if (isDeletedUser) {
-        res.status(200).send(isDeletedUser);
+      const deletedUser = await UserService.delete(userId);
+      if (deletedUser) {
+        return successNoContent(res, deletedUser);
       }
-      next(createHttpError(400, "Cannot delete user"));
+
+      return forBiddenError(res, "Cannot delete user");
     } catch (error) {
       next(error);
     }
@@ -86,9 +87,10 @@ class UserController {
     try {
       const addedRoleToUser = await RoleService.addUserRole(userId);
       if (addedRoleToUser) {
-        return res.status(200);
+        return success(res);
       }
-      return next(createHttpError(400, "Cannot add role to user"));
+
+      return forBiddenError(res, "Cannot add role to user");
     } catch (error) {
       next(error);
     }

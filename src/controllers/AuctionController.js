@@ -1,5 +1,12 @@
-import createHttpError from "http-errors";
 import AuctionService from "../services/AuctionService";
+import {
+  badRequestError,
+  successCreated,
+  success,
+  notFoundError,
+  successNoContent,
+  forBiddenError,
+} from "../utils/resFuncs";
 
 class AuctionController {
   async create(req, res, next) {
@@ -7,9 +14,9 @@ class AuctionController {
     try {
       const createdAuction = await AuctionService.createAuction(body);
       if (createdAuction) {
-        return res.status(201).send(createdAuction);
+        return successCreated(res, createdAuction);
       }
-      return next(createHttpError(400, "Cannot create Auction"));
+      return badRequestError(res, "Cannot create auction");
     } catch (error) {
       next(error);
     }
@@ -19,9 +26,9 @@ class AuctionController {
     try {
       const auctions = await AuctionService.findAll(body);
       if (auctions) {
-        return res.status(200).send(auctions);
+        return success(res, auctions);
       }
-      return next(createHttpError(400, "Cannot find auctions"));
+      return notFoundError(res, "Not found");
     } catch (error) {
       next(error);
     }
@@ -33,9 +40,9 @@ class AuctionController {
     try {
       const auction = await AuctionService.findOne(auctionId);
       if (auction) {
-        return res.status(200).send(auction);
+        return success(res, auction);
       }
-      return next(createHttpError(400, "Cannot find auction"));
+      return notFoundError(res, "Not found");
     } catch (error) {
       next(error);
     }
@@ -47,9 +54,9 @@ class AuctionController {
     try {
       const deletedAuction = await AuctionService.deleteAuction(auctionId);
       if (deletedAuction) {
-        return res.status(200).send(deletedAuction);
+        return successNoContent(res, deletedAuction);
       }
-      return next(createHttpError(400, "Cannot delete auction"));
+      return forBiddenError(res, "Cannot delete");
     } catch (error) {
       next(error);
     }
