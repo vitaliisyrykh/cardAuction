@@ -12,7 +12,7 @@ exports.up = function (knex) {
       .inTable("chats")
       .onDelete("CASCADE");
     t.text("body").notNullable();
-    t.boolean("isRead").defaultTo(false).notNullable();
+    t.boolean("is_read").defaultTo(false).notNullable();
     t.timestamp("created_at", { useTz: true })
       .defaultTo(knex.fn.now())
       .notNullable();
