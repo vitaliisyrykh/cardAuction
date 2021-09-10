@@ -1,10 +1,14 @@
-import './App.css';
+import { Router, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-     
-    </div>
+    <>
+      <Switch>
+        <Route exact path="/" />
+        <Route exact path="/signin" />
+        <Route exact path="/signUp" />
+      </Switch>
+    </>
   );
 }
 
