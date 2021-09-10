@@ -7,5 +7,6 @@ const httpClient = axios.create({
 
 export const signUp = async data =>{
   const responsePromise = httpClient.post('/auth/sign-up',data);
+  console.log(data,'<<<<API DATA');
   return responsePromise;
-}
+};

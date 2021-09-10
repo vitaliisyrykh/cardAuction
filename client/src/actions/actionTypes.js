@@ -1,7 +1,7 @@
 const actionTypes = {
-  createUserRequest: "createUserRequest",
-  createUserSuccess: "createUserSuccess",
-  createUserError: "createUserError",
+  signUpRequest: "signUpRequest",
+  signUpSuccess: "signUpSuccess",
+  signUpError: "signUpError",
 };
 
 export default actionTypes;
