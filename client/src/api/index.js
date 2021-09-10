@@ -1,12 +1,19 @@
 import axios from 'axios';
 import constants from '../constants';
 
+const {baseUrl, host, signUpPath, signInPath} = constants
+
+
 const httpClient = axios.create({
-  baseURL:`http://${constants.baseUrl}:${constants.host}/api`,
+    baseURL: `http://${baseUrl}:${host}/api`,
 })
 
-export const signUp = async data =>{
-  const responsePromise = httpClient.post('/auth/sign-up',data);
-  console.log(data,'<<<<API DATA');
-  return responsePromise;
+export const signUp = async data => {
+    const responsePromise = httpClient.post(signUpPath, data);
+    return responsePromise;
 };
+
+export const signIn = async data => {
+    const responsePromise = httpClient.post(signInPath,data)
+    return responsePromise
+}

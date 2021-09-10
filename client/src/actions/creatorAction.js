@@ -1,4 +1,4 @@
-import actionTypes from "./actionTypes";
+import actionTypes from "./actionType";
 
 
 export const signUpRequest = (data) => ({
@@ -15,3 +15,19 @@ export const signUpError = (error) => ({
   type: actionTypes.signUpError,
   payload: { error },
 });
+
+export const signInRequest = data => ({
+  type: actionTypes.signInRequest,
+  payload:{data}
+});
+
+export const signInSuccess = data => ({
+  type:actionTypes.signInSuccess,
+  payload:{data}
+});
+
+export const signInError = error => ({
+  type: actionTypes.signInError,
+  payload:{error}
+});
+
