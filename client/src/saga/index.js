@@ -1,12 +1,12 @@
 import {takeLatest} from 'redux-saga/effects';
 import actionTypes from '../actions/actionType';
-import {signUp,signIn} from "./auth";
+import {signUpSaga,signInsaga} from "./auth";
 const{signUpRequest, signInRequest} = actionTypes
 
 
 function * rootSaga (){
-  yield takeLatest(signUpRequest , signUp);
-  yield takeLatest(signInRequest, signIn)
+  yield takeLatest(signUpRequest , signUpSaga);
+  yield takeLatest(signInRequest, signInsaga);
 }
 
 export default rootSaga;
