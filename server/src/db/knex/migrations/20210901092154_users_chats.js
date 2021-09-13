@@ -1,5 +1,6 @@
 exports.up = function (knex) {
   return knex.schema.createTable("users_chats", (t) => {
+    t.increments("id").notNullable().primary(); 
     t.integer("user_id")
       .unsigned()
       .notNullable()
