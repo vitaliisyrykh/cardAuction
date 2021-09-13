@@ -15,6 +15,6 @@ function createAuthSaga(method) {
 }
 
 export const signUpSaga = createAuthSaga(auth.signUp);
-export const signInsaga = createAuthSaga(auth.signIn)
+export const signInsaga = createAuthSaga(auth.signIn);
 
 
