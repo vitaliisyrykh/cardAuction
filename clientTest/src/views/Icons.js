@@ -36,6 +36,19 @@ function Icons() {
               </CardHeader>
               <CardBody className="all-icons">
                 <Row>
+                  {users.map(u=>{
+                    <Col
+                        className="font-icon-list col-xs-6 col-xs-6"
+                        lg="2"
+                        md="3"
+                        sm="4"
+                    >
+                      <div className="font-icon-detail">
+                        <i className="tim-icons icon-alert-circle-exc" />
+                        <p>test</p>
+                      </div>
+                    </Col>
+                  })}
                   <Col
                     className="font-icon-list col-xs-6 col-xs-6"
                     lg="2"
@@ -44,7 +57,7 @@ function Icons() {
                   >
                     <div className="font-icon-detail">
                       <i className="tim-icons icon-alert-circle-exc" />
-                      <p>icon-alert-circle-exc</p>
+                      <p>test</p>
                     </div>
                   </Col>
                   <Col
