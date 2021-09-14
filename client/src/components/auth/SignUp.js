@@ -13,7 +13,7 @@ const SignUp = () => {
     };
 
     return (
-        <>
+        <div>
             <Formik
                 initialValues={{
                     name: "",
@@ -24,13 +24,13 @@ const SignUp = () => {
                 onSubmit={onSubmit}
             >
                 <Form>
-                    <Field name={"name"} placeholder="enter you name"/>
-                    <Field name={"email"} placeholder="enter you email"/>
-                    <Field name={"password"} placeholder="enter you password"/>
+                    <Field name="name" placeholder="enter you name"/>
+                    <Field name="email" placeholder="enter you email"/>
+                    <Field name="password" placeholder="enter you password"/>
                     <button type="submit">Confirm</button>
                 </Form>
             </Formik>
-        </>
+        </div>
     );
 };
 

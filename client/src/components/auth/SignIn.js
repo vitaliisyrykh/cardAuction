@@ -19,9 +19,9 @@ const SignIn = props => {
             validationSchema={signInSchema}
             >
                 <Form>
-                    <Field name={"email"} placeholder='enter you email'/>
-                    <Field name={"password"} placeholder = 'enter ypu password'/>
-                    <button type={"submit"}>Confirm</button>
+                    <Field name= "email" placeholder="enter you email"/>
+                    <Field name="password" placeholder = "enter ypu password"/>
+                    <button type="submit">Confirm</button>
                 </Form>
             </Formik>
         </>
