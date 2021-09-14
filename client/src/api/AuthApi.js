@@ -2,7 +2,7 @@ import constants from "../constants";
 
 class AuthApi {
     #_client;
-    #_accessToken;
+    #_accessToken ;
 
     constructor(client) {
         this.#_client = client;
