@@ -11,7 +11,7 @@ const SignIn = props => {
         formikBag.resetForm();
     }
     return (
-        <>
+        <div>
             <Formik initialValues={{
                 email: "",
                 password: ""
@@ -25,7 +25,7 @@ const SignIn = props => {
                     <button type="submit">Confirm</button>
                 </Form>
             </Formik>
-        </>
+        </div>
     );
 };
 

@@ -14,7 +14,7 @@ const SignUp = () => {
     };
 
     return (
-        <>
+        <div>
             <Formik
                 initialValues={{
                     name: "",
@@ -32,7 +32,7 @@ const SignUp = () => {
                     <button type="submit">Confirm</button>
                 </Form>
             </Formik>
-        </>
+        </div>
     );
 };
 
