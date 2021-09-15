@@ -3,7 +3,7 @@ import {Field, ErrorMessage} from "formik";
 const FormInput = fieldProps => {
     const {name, type, ...rest} = fieldProps;
     return (
-        <label >
+        <label>
             <span>{name}</span>
             <Field name={name}>
                 {({field}) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import {Formik, Form } from "formik";
+import {Formik, Form} from "formik";
 import {useDispatch} from 'react-redux';
 import {signUpSchema} from "../../validationSchems";
 import {signUpRegistration} from "../../redux/actions/creatorAction";
