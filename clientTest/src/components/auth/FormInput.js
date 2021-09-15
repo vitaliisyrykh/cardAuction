@@ -13,7 +13,7 @@ const FormInput = fieldProps => {
                 }
                 }
             </Field>
-            <ErrorMessage name={name} component={'span'}/>
+            <ErrorMessage name={name} component="span"/>
         </label>
     )
 }

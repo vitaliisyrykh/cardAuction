@@ -8,13 +8,13 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case actionTypes.signUpRequest: {
+        case actionTypes.SIGN_UP_REGISTRATION: {
             return {
                 ...state,
                 isFetching: true,
             };
         }
-        case actionTypes.signUpSuccess: {
+        case actionTypes.SIGN_UP_CREATED_USER: {
             const {payload: {data}} = action;
             return {
                 ...state,
@@ -22,7 +22,7 @@ export default function (state = initialState, action) {
                 users: data
             }
         }
-        case actionTypes.signUpError: {
+        case actionTypes.SIGN_UP_ERROR: {
             const {payload: {error}} = action;
             return {
                 ...state,
@@ -30,18 +30,26 @@ export default function (state = initialState, action) {
                 error
             }
         }
-        case actionTypes.signInRequest: {
+        case actionTypes.SIGN_IN_LOGIN: {
             return {
                 ...state,
                 isFetching: true,
             }
         }
-        case actionTypes.signInSuccess: {
+        case actionTypes.SIGN_IN_USER: {
             const {payload: {data: {data: userData}}} = action;
             return {
                 ...state,
                 isFetching: false,
                 user: userData
+            }
+        }
+        case actionTypes.SIGN_IN_ERROR:{
+            const {payload:{error}}=action;
+            return {
+                ...state,
+                isFetching: false,
+                error
             }
         }
         default:
