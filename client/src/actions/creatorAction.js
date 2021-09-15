@@ -1,33 +1,33 @@
 import actionTypes from "./actionType";
 
 
-export const signUpRegistration = (data) => ({
-  type: actionTypes.SIGN_UP_REGISTRATION,
+export const signUpRequest = (data) => ({
+  type: actionTypes.signUpRequest,
   payload: { data },
 });
 
-export const signUpSaved = (data) => ({
-  type: actionTypes.SIGN_UP_SAVED,
+export const signUpSuccess = (data) => ({
+  type: actionTypes.signUpSuccess,
   payload: { data },
 })
 
 export const signUpError = (error) => ({
-  type: actionTypes.SIGN_UP_ERROR,
+  type: actionTypes.signUpError,
   payload: { error },
 });
 
-export const signInLogin = data => ({
-  type: actionTypes.SIGN_IN_LOGIN,
+export const signInRequest = data => ({
+  type: actionTypes.signInRequest,
   payload:{data}
 });
 
-export const signInLoginedUser = data => ({
-  type:actionTypes.SIGN_IN_LOGINED_USER,
+export const signInSuccess = data => ({
+  type:actionTypes.signInSuccess,
   payload:{data}
 });
 
 export const signInError = error => ({
-  type: actionTypes.SIGN_IN_ERROR,
+  type: actionTypes.signInError,
   payload:{error}
 });
 
