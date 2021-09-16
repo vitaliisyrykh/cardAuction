@@ -1,5 +1,10 @@
 import {put} from "@redux-saga/core/effects";
-import * as creatorActions from "../actions/creatorAction";
+import {
+    signUpCreatedUser,
+    signUpError,
+    signInUser,
+    signInError
+} from "../actions/creatorAction";
 import {auth} from "../../api";
 
 
@@ -7,9 +12,9 @@ import {auth} from "../../api";
         const {payload: {data}} = action;
         try {
             const {data: user} = yield method(data);
-            yield put(creatorActions.signUpCreatedUser(user));
+            yield put(signUpCreatedUser(user));
         } catch (error) {
-            yield put(creatorActions.signUpError(error))
+            yield put(signUpError(error))
         }
     }
 
@@ -18,9 +23,9 @@ export function * signInSaga(action){
     const {payload:{data}}=action
     try{
         const{data:user}=yield auth.signIn(data)
-        yield put(creatorActions.signInUser(user))
+        yield put(signInUser(user))
     }catch (error) {
-        yield put(creatorActions.signInError(error))
+        yield put(signInError(error))
     }
 }
 
