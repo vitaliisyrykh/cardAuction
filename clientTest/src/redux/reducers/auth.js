@@ -1,4 +1,11 @@
-import actionTypes from '../actions/actionType';
+import {
+    SIGN_UP_REGISTRATION,
+    SIGN_UP_CREATED_USER,
+    SIGN_UP_ERROR,
+    SIGN_IN_LOGIN,
+    SIGN_IN_USER,
+    SIGN_IN_ERROR
+} from '../actions/actionType';
 
 const initialState = {
     isFetching: false,
@@ -8,13 +15,13 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case actionTypes.signUpRequest: {
+        case SIGN_UP_REGISTRATION: {
             return {
                 ...state,
                 isFetching: true,
             };
         }
-        case actionTypes.signUpSuccess: {
+        case SIGN_UP_CREATED_USER: {
             const {payload: {data}} = action;
             return {
                 ...state,
@@ -22,7 +29,7 @@ export default function (state = initialState, action) {
                 users: data
             }
         }
-        case actionTypes.signUpError: {
+        case SIGN_UP_ERROR: {
             const {payload: {error}} = action;
             return {
                 ...state,
@@ -30,18 +37,26 @@ export default function (state = initialState, action) {
                 error
             }
         }
-        case actionTypes.signInRequest: {
+        case SIGN_IN_LOGIN: {
             return {
                 ...state,
                 isFetching: true,
             }
         }
-        case actionTypes.signInSuccess: {
+        case SIGN_IN_USER: {
             const {payload: {data: {data: userData}}} = action;
             return {
                 ...state,
                 isFetching: false,
                 user: userData
+            }
+        }
+        case SIGN_IN_ERROR:{
+            const {payload:{error}}=action;
+            return {
+                ...state,
+                isFetching: false,
+                error
             }
         }
         default:

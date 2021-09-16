@@ -1,16 +1,17 @@
-import {Formik, Form, Field} from "formik";
+import {Formik, Form} from "formik";
 import {useDispatch} from "react-redux";
-import {signInSchema} from "../../validation/validationSchema";
-import {signInRequest} from "../../actions/creatorAction";
+import {signInSchema} from "../../validationSchems";
+import {signInLogin} from "../../redux/actions/creatorAction";
+import FormInput from "./FormInput";
 
 const SignIn = props => {
     const dispatch = useDispatch();
     const onSubmit = (values, formikBag) => {
-        dispatch(signInRequest(values));
+        dispatch(signInLogin(values));
         formikBag.resetForm();
     }
     return (
-        <>
+        <div>
             <Formik initialValues={{
                 email: "",
                 password: ""
@@ -19,12 +20,12 @@ const SignIn = props => {
                     validationSchema={signInSchema}
             >
                 <Form>
-                    <Field name="email" placeholder="enter you email"/>
-                    <Field name="password" placeholder="enter ypu password"/>
+                    <FormInput name="email" type="text" placeholder="enter you email"/>
+                    <FormInput name="password" type="text" placeholder="enter ypu password"/>
                     <button type="submit">Confirm</button>
                 </Form>
             </Formik>
-        </>
+        </div>
     );
 };
 
