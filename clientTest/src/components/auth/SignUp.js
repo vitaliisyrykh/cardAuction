@@ -1,14 +1,15 @@
 import React from "react";
-import {Formik, Form, Field} from "formik";
+import {Formik, Form} from "formik";
 import {useDispatch} from 'react-redux';
-import {signUpSchema} from "../../validation/validationSchema";
-import {signUpRequest} from "../../actions/creatorAction";
+import {signUpSchema} from "../../validationSchems";
+import {signUpRegistration} from "../../redux/actions/creatorAction";
+import FormInput from "./FormInput";
 
 const SignUp = () => {
     const dispatch = useDispatch()
     const onSubmit = (values, formikBag) => {
         console.log(values)
-        dispatch(signUpRequest(values))
+        dispatch(signUpRegistration(values))
         formikBag.resetForm();
     };
 
@@ -24,9 +25,10 @@ const SignUp = () => {
                 onSubmit={onSubmit}
             >
                 <Form>
-                    <Field name="name" placeholder="enter you name"/>
-                    <Field name="email" placeholder="enter you email"/>
-                    <Field name="password" placeholder="enter you password"/>
+                    <FormInput name="name" type="text" placeholder="enter you name"/>
+                    <FormInput name="email" type="text" placeholder="enter you email"/>
+                    <FormInput name="password" type="text" placeholder="enter you password"/>
+                    <FormInput name="compare password" type="text" placeholder="repeat you password"/>
                     <button type="submit">Confirm</button>
                 </Form>
             </Formik>
