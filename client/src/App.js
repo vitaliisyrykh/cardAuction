@@ -13,7 +13,6 @@ function App() {
                <Route exact path="/auth"/>
                 <Route exact path="/auth/signup" component={SignUp}/>
                 <Route exact path="/auth/signin" component={SignIn}/>
-                {/*<AdminRoute role={constants.adminRole} exact to="/admin" component={}/>*/}
             </Switch>
         </BrowserRouter>
 
