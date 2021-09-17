@@ -17,7 +17,9 @@ export const SIGN_IN_ERROR = "SignIn:Error";
 export const ADMIN_GET_USERS = "AdminUsers:GetUsers";
 export const ADMIN_USERS = "AdminUsers:Users";
 export const ADMIN_USERS_ERROR = "AdminUsers:Error";
-
+export const ADMIN_USER_DELETE = "AdminUser:Delete";
+export const ADMIN_USER_DELETED = "AdminUser:Deleted";
+export const ADMIN_USER_DELETE_ERROR = "AdminUser:DeleteError";
 
 
 

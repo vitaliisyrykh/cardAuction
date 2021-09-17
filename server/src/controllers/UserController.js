@@ -66,14 +66,14 @@ class UserController {
   }
   async delete(req, res, next) {
     const {
-      params: { userId },
-    } = req;
+      body:{id}
+    }= req;
     try {
-      const deletedUser = await UserService.delete(userId);
+      const deletedUser = await UserService.delete(id);
+      console.log(deletedUser)
       if (deletedUser) {
-        return successNoContent(res, deletedUser);
+        return success(res, deletedUser);
       }
-
       return forBiddenError(res, "Cannot delete user");
     } catch (error) {
       next(error);

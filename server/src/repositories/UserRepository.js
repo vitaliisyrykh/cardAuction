@@ -59,7 +59,7 @@ class UserRepository {
   async delete(userId) {
     try {
       const deletedUser = await new UserModel({ id: userId }).destroy();
-      return deletedUser ? { isDeletedUser: true } : { isDeletedUser: false };
+      return Object.keys(deletedUser.attributes).length === 0 ? { deletedId: userId } : { isDeletedUser: false };
     } catch (error) {
       return error;
     }
