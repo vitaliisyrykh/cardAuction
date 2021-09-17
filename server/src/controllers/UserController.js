@@ -26,7 +26,7 @@ class UserController {
     try {
       const users = await UserService.findAll();
 
-      if (!users) {
+      if (users) {
         return success(res, users);
       }
       return notFoundError(res, "Not found users");

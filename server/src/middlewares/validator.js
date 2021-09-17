@@ -8,10 +8,10 @@ import {
   auctionCreateSchema,
   betSchema
 } from '../validationSchems/schems';
-import {badRequestError} from '../utils/resFunc.js'
+import {badRequestError} from '../utils/resFuncs'
 
 const validateFunc = (schema) =>{
-  return validatalidate = async (req,res,next)=>{
+  return  async (req,res,next)=>{
     try {
       const validResult = await schema.isValid(req.body);
       if(validResult){

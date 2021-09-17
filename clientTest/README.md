@@ -128,7 +128,7 @@ black-dashboard-react
     │   └── charts.js
     └── views
         ├── Dashboard.js
-        ├── Icons.js
+        ├── Users.js
         ├── Map.js
         ├── Notifications.js
         ├── Rtl.js

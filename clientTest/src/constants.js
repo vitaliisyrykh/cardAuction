@@ -5,5 +5,6 @@ const constants = {
     signInPath: '/auth/sign-in',
     refreshToken: 'refreshToken',
     emailRegular: /^(?!.*@.*@.*$)(?!.*@.*\-\-.*\..*$)(?!.*@.*\-\..*$)(?!.*@.*\-$)(.*@.+(\..{1,11})?)$/,
+    adminRole: 'admin'
 }
 export default constants;

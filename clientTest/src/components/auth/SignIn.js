@@ -1,7 +1,7 @@
 import {Formik, Form} from "formik";
 import {useDispatch} from "react-redux";
 import {signInSchema} from "../../validationSchems";
-import {signInLogin} from "../../redux/actions/creatorAction";
+import {signInLogin} from "../../redux/actions/creatorAuthAction.js";
 import FormInput from "./FormInput";
 
 const SignIn = props => {

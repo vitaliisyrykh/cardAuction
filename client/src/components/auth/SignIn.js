@@ -1,12 +1,12 @@
 import {Formik, Form, Field} from "formik";
 import {useDispatch} from "react-redux";
 import {signInSchema} from "../../validation/validationSchema";
-import {signInRequest} from "../../actions/creatorAction";
+import {signInLogin} from "../../redux/actions/creatorAuthAction";
 
 const SignIn = props => {
     const dispatch = useDispatch();
     const onSubmit = (values, formikBag) => {
-        dispatch(signInRequest(values));
+        dispatch(signInLogin(values));
         formikBag.resetForm();
     }
     return (

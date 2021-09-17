@@ -1,4 +1,4 @@
-import yup from 'yup';
+import * as yup from 'yup';
 
 export const signUpSchema = yup.object().shape({
   name: yup.string().required().min(4),
@@ -8,7 +8,7 @@ export const signUpSchema = yup.object().shape({
 
 export const signInSchema = yup.object().shape({
   email: yup.string().email().required().min(5),
-  password: yup.string().required.min(4)
+  password: yup.string().required().min(4)
 });
 
 export const cardSchema = yup.object().shape({

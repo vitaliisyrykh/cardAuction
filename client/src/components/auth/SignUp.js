@@ -2,13 +2,13 @@ import React from "react";
 import {Formik, Form, Field} from "formik";
 import {useDispatch} from 'react-redux';
 import {signUpSchema} from "../../validation/validationSchema";
-import {signUpRequest} from "../../actions/creatorAction";
+import {signUpRegistration} from "../../redux/actions/creatorAuthAction";
 
 const SignUp = () => {
     const dispatch = useDispatch()
     const onSubmit = (values, formikBag) => {
         console.log(values)
-        dispatch(signUpRequest(values))
+        dispatch(signUpRegistration(values))
         formikBag.resetForm();
     };
 
