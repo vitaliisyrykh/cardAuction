@@ -70,7 +70,6 @@ class UserController {
     }= req;
     try {
       const deletedUser = await UserService.delete(id);
-      console.log(deletedUser)
       if (deletedUser) {
         return success(res, deletedUser);
       }

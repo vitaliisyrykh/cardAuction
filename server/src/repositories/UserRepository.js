@@ -23,7 +23,7 @@ class UserRepository {
         //withRelated: ["raiting"],
       }).then((resData) => {
         return resData.models.map((m) => {
-          return { name: m.attributes.name, id: m.attributes.id };
+          return { name: m.attributes.name, id: m.attributes.id, email:m.attributes.email };
         });
       });
       if (allUsers.length === 0) {
@@ -70,7 +70,7 @@ class UserRepository {
         method: "update",
         patch: true,
       });
-      const { id, name } = updatedUser.attributes;
+      const { id, name, email } = updatedUser.attributes;
       return { id, name };
     } catch (error) {
       return error;

@@ -5,6 +5,9 @@ import {
     ADMIN_USER_DELETE,
     ADMIN_USER_DELETED,
     ADMIN_USER_DELETE_ERROR,
+    ADMIN_USER_UPDATE,
+    ADMIN_USER_UPDATED,
+    ADMIN_USER_UPDATE_ERROR
 } from '../actions/actionType'
 
 const initialState = {
@@ -26,17 +29,43 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isFetching: false,
-                users: [ ...newUsers]
+                users: [...newUsers]
             }
         }
         case ADMIN_USERS_ERROR: {
-            const {payload} = action;
+            const {payload:{error}} = action;
             return {
                 ...state,
                 isFetching: false,
-                error: payload
+                error
             }
         }
+        case ADMIN_USER_UPDATE:{
+            return{
+                ...state,
+                isFetching: true
+            }
+        }
+        case ADMIN_USER_UPDATED:{
+            const {users}=state;
+            const {payload:{data:updatedUser}} = action;
+            const updatedUsers = users.map(u=>u.id === updatedUser.id ? updatedUser : u);
+            return {
+                ...state,
+                isFetching: false,
+                users : [...updatedUsers]
+            }
+        }
+
+        case ADMIN_USER_UPDATE_ERROR:{
+            const {payload:{error}} = action
+            return {
+                ...state,
+                isFetching: false,
+                error
+            }
+        }
+
         case ADMIN_USER_DELETE: {
             return {
                 ...state,
@@ -46,28 +75,34 @@ export default function (state = initialState, action) {
 
         case ADMIN_USER_DELETED: {
             const {users} = state;
-            console.log(action);
-            const id = null
-            const newUsersArr = users.filter(u => u.id !== id);
+            const {
+                payload:
+                    {
+                        data: {
+                            data: {deletedId}
+                        }
+                    }} = action
+            const newUsersArr = users.filter(u => u.id !== deletedId);
             return {
                 ...state,
                 isFetching: false,
                 users: [...newUsersArr]
             }
         }
-        case ADMIN_USER_DELETE_ERROR: {
-            const {payload: {error}} = action;
-            return {
-                ...state,
-                isFetching: false,
-                error
+        case
+            ADMIN_USER_DELETE_ERROR: {
+                const {payload: {error}} = action;
+                return {
+                    ...state,
+                    isFetching: false,
+                    error
+                }
             }
-        }
         default:
             return state;
-    }
+        }
 
-}
+    }
 
 
 

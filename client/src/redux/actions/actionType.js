@@ -20,6 +20,9 @@ export const ADMIN_USERS_ERROR = "AdminUsers:Error";
 export const ADMIN_USER_DELETE = "AdminUser:Delete";
 export const ADMIN_USER_DELETED = "AdminUser:Deleted";
 export const ADMIN_USER_DELETE_ERROR = "AdminUser:DeleteError";
+export const ADMIN_USER_UPDATE = "AdminUser: Update";
+export const ADMIN_USER_UPDATED = "AdminUser: Updated";
+export const ADMIN_USER_UPDATE_ERROR = "AdminUSser: UpdatedError";
 
 
 

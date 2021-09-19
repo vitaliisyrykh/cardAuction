@@ -2,7 +2,12 @@ import {
     ADMIN_GET_USERS,
     ADMIN_USERS,
     ADMIN_USERS_ERROR,
-    ADMIN_USER_DELETE, ADMIN_USER_DELETED, ADMIN_USER_DELETE_ERROR
+    ADMIN_USER_DELETE,
+    ADMIN_USER_DELETED,
+    ADMIN_USER_DELETE_ERROR,
+    ADMIN_USER_UPDATE,
+    ADMIN_USER_UPDATE_ERROR,
+    ADMIN_USER_UPDATED
 } from './actionType';
 
 export const adminGetUsers = data => ({
@@ -32,4 +37,19 @@ export const adminUserDeleted = data => ({
 export const adminUserDeleteError = error => ({
     type: ADMIN_USER_DELETE_ERROR,
     payload: {error}
-})
+});
+
+export const adminUserUpdate = data => ({
+    type: ADMIN_USER_UPDATE,
+    payload: {data}
+});
+
+export const adminUserUpdated = data => ({
+    type: ADMIN_USER_UPDATED,
+    payload: {data}
+});
+
+export const adminUserUpdateError = error => ({
+    type: ADMIN_USER_UPDATE_ERROR,
+    payload: {error}
+});

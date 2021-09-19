@@ -6,3 +6,5 @@ export const adminDeleteUser = (data) => {
    const responsePromise = httpClient.delete(`/users/${data.adminId}/admin/users/`, {data});
    return responsePromise
 }
+
+export const adminUpdateUser = data => httpClient.patch(`/users/${data.adminId}/admin/users/`, data)

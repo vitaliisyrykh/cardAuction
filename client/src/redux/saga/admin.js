@@ -3,11 +3,14 @@ import {
     adminUsers,
     adminUsersError,
     adminUserDeleted,
-    adminUserDeleteError
+    adminUserDeleteError,
+    adminUserUpdated,
+    adminUserUpdateError,
 } from "../actions/creatorAdminActions";
 import {
     adminGetUsers,
     adminDeleteUser,
+    adminUpdateUser
 } from '../../api/adminApi';
 
 export function* adminGetUsersSaga(action) {
@@ -23,10 +26,19 @@ export function* adminGetUsersSaga(action) {
 export function* adminDeleteUserSaga(action) {
     const {payload: {data}} = action
     try {
-        const {payload:{data:isDeleted}} = yield adminDeleteUser(data)
-        console.log(isDeleted,'saga')
-        yield put(adminUserDeleted(isDeleted))
+        const  newData = yield adminDeleteUser(data)
+        yield put(adminUserDeleted(newData.data))
     } catch (error) {
         yield put(adminUserDeleteError(error))
+    }
+}
+
+export function * adminUpdateUserSaga (action){
+    const {payload:{data}} = action;
+    try{
+        const {data:{data:updatedUser}} = yield adminUpdateUser(data);
+        yield put(adminUserUpdated(updatedUser))
+    }catch (error) {
+        yield put(adminUserUpdateError(error))
     }
 }
