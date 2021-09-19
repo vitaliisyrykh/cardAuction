@@ -3,7 +3,6 @@ import {Redirect, Route} from "react-router-dom";
 
 const AdminRoute =({role, ...rest})=>{
     const {user, isFetching} =useSelector(state => state.auth);
-    console.log(user)
     if(isFetching){
         return '...loading'
     }

@@ -8,7 +8,7 @@ function UserCard(props) {
     const {
         user: {
             name, id, email
-        }, adminId, user
+        }, adminId, user, isFetching
     } = props;
     const [isUpdate, setIsUpdate] = useState(false)
     const dispatch = useDispatch()
@@ -20,6 +20,7 @@ function UserCard(props) {
     };
     return (
         <Card>
+            {isFetching && "...LOADING"}
             {isUpdate ?
                 (<UpdateForm user={user} updateHandler={updateHandler} adminId={adminId}/>) : (
                     <>

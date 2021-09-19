@@ -25,6 +25,7 @@ function Users(props) {
     return (
         <div>
             <NavTabs/>
+            {isFetching && "...LOADING"}
             {isCreateUser? (<SignUp/>):(
                 <>
                 <Button variant="outlined" onClick={createUserHandler} >
@@ -33,7 +34,7 @@ function Users(props) {
                 <Grid container spacing={{xs: 2, md: 3}} columns={{xs: 4, sm: 8, md: 12}}>
             {users.map((u) => (
                 <Grid item xs={2} sm={4} md={4} key={u.id}>
-                <UserCard user={u} adminId={adminId}/>
+                <UserCard user={u} adminId={adminId} isFetching={isFetching}/>
                 </Grid>
                 ))}
                 </Grid>

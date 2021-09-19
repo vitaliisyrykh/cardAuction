@@ -1,6 +1,7 @@
 import {Formik, Form, Field} from "formik";
 import {useDispatch} from "react-redux";
 import {adminUserUpdated} from "../../redux/actions/creatorAdminActions";
+import FormInput from "../../components/auth/FormInput.js"
 
 function UpdateForm(props) {
     const {user: {name,email}, updateHandler, adminId} = props;
@@ -17,8 +18,8 @@ function UpdateForm(props) {
                 email
             }} onSubmit={onSubmit}>
                 <Form>
-                    <Field name="name" placegolder="Enter new name"/>
-                    <Field name="email" placeholder="Enter new email"/>
+                    <FormInput name="name" placegolder="Enter new name"/>
+                    <FormInput name="email" placeholder="Enter new email"/>
                     <button type="submit">Confirm</button>
                 </Form>
             </Formik>
