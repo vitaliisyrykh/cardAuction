@@ -3,6 +3,7 @@ import {Formik, Form, Field} from "formik";
 import {useDispatch} from 'react-redux';
 import {signUpSchema} from "../../validation/validationSchema";
 import {signUpRegistration} from "../../redux/actions/creatorAuthAction";
+import FormInput from "./FormInput";
 
 const SignUp = () => {
     const dispatch = useDispatch()
@@ -24,9 +25,9 @@ const SignUp = () => {
                 onSubmit={onSubmit}
             >
                 <Form>
-                    <Field name="name" placeholder="enter you name"/>
-                    <Field name="email" placeholder="enter you email"/>
-                    <Field name="password" placeholder="enter you password"/>
+                    <FormInput name="name" placeholder="enter you name"/>
+                    <FormInput name="email" placeholder="enter you email"/>
+                    <FormInput name="password" placeholder="enter you password"/>
                     <button type="submit">Confirm</button>
                 </Form>
             </Formik>

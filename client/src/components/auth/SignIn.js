@@ -2,6 +2,7 @@ import {Formik, Form, Field} from "formik";
 import {useDispatch} from "react-redux";
 import {signInSchema} from "../../validation/validationSchema";
 import {signInLogin} from "../../redux/actions/creatorAuthAction";
+import FormInput from "./FormInput";
 
 const SignIn = props => {
     const dispatch = useDispatch();
@@ -19,8 +20,8 @@ const SignIn = props => {
                     validationSchema={signInSchema}
             >
                 <Form>
-                    <Field name="email" placeholder="enter you email"/>
-                    <Field name="password" placeholder="enter ypu password"/>
+                    <FormInput name="email" placeholder="enter you email"/>
+                    <FormInput name="password" placeholder="enter ypu password"/>
                     <button type="submit">Confirm</button>
                 </Form>
             </Formik>
