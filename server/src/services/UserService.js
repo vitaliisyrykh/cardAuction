@@ -5,8 +5,8 @@ class UserService {
   create(body) {
     return UserRepository.create(body);
   }
-  findAll() {
-    return UserRepository.findAll();
+  findAll(pagination) {
+    return UserRepository.findAll(pagination);
   }
   findOne(attribut, value) {
     const user = UserRepository.findOne(attribut, value);

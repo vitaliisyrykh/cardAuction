@@ -1,7 +1,7 @@
 import React from "react";
 import {Route, Switch} from "react-router-dom";
 import constants from './constants';
-import AdminRoute from "./AdminRoute/AdminRoute";
+import AdminRoute from "./components/adminRoute/AdminRoute";
 import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn";
 import Admin from "./layout/Admin";

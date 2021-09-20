@@ -1,4 +1,4 @@
-import {Card, Button, Typography} from "@mui/material";
+import {Card, Button, Typography, CircularProgress} from "@mui/material";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {adminUserDelete} from "../../redux/actions/creatorAdminActions";
@@ -20,9 +20,9 @@ function UserCard(props) {
     };
     return (
         <Card>
-            {isFetching && "...LOADING"}
+            {isFetching && <CircularProgress/>}
             {isUpdate ?
-                (<UpdateForm user={user} updateHandler={updateHandler} adminId={adminId}/>) : (
+                (<UpdateForm {...user} updateHandler={updateHandler} adminId={adminId}/>) : (
                     <>
                         <Typography variant="h4">
                             {name}

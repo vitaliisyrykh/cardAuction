@@ -15,12 +15,12 @@ class UserRepository {
       return error;
     }
   }
-  async findAll(pageNum, pageSize) {
+  async findAll({limit,offset}) {
     try {
       const allUsers = await UserModel.fetchPage({
-        page: 1,
-        pageSize: 5,
-        //withRelated: ["raiting"],
+        limit,
+        offset,
+        withRelated: ["raiting"],
       }).then((resData) => {
         return resData.models.map((m) => {
           return { name: m.attributes.name, id: m.attributes.id, email:m.attributes.email };

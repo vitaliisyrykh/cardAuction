@@ -23,8 +23,9 @@ class UserController {
     }
   }
   async findAll(req, res, next) {
+    const {pagination} = req;
     try {
-      const users = await UserService.findAll();
+      const users = await UserService.findAll(pagination);
 
       if (users) {
         return success(res, users);

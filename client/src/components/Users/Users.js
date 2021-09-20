@@ -1,13 +1,13 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect,useState} from "react";
-import {Grid, Button} from "@mui/material";
+import {Grid, Button, CircularProgress} from "@mui/material";
 import NavTabs from "../NavTabs";
 import UserCard from "./UserCard";
 import {adminGetUsers} from "../../redux/actions/creatorAdminActions";
-import SignUp from "../auth/SignUp";
+import CreateUserForm from "./CreateUserForm";
 
-function Users(props) {
-    const {users, isFetching, error} = useSelector(state => state.admin);
+function Users() {
+    const {users, isFetching} = useSelector(state => state.admin);
     const {
         user: {
             id: adminId
@@ -16,7 +16,7 @@ function Users(props) {
     const [isCreateUser,setIsCreateUser] = useState(false);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(adminGetUsers({id: adminId}))
+        dispatch(adminGetUsers({id: adminId, offset: users.length, limit:20}))
     }, [dispatch]);
 
     const createUserHandler = () => {
@@ -25,8 +25,8 @@ function Users(props) {
     return (
         <div>
             <NavTabs/>
-            {isFetching && "...LOADING"}
-            {isCreateUser? (<SignUp/>):(
+            {isFetching && <CircularProgress/>}
+            {isCreateUser? (<CreateUserForm adminId={adminId} createUserHandler={createUserHandler}/>):(
                 <>
                 <Button variant="outlined" onClick={createUserHandler} >
                     Add user
