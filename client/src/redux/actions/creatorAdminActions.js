@@ -10,7 +10,10 @@ import {
     ADMIN_USER_UPDATED,
     ADMIN_USER_CREATE,
     ADMIN_USER_CREATED,
-    ADMIN_USER_CREATE_ERROR
+    ADMIN_USER_CREATE_ERROR,
+    ADMIN_GET_CARDS,
+    ADMIN_CARDS,
+    ADMIN_CARDS_ERROR
 } from './actionType';
 
 export const adminGetUsers = data => ({
@@ -70,4 +73,19 @@ export const adminUserCreated = data => ({
 export const adminUserCreateError = error => ({
     type: ADMIN_USER_CREATE_ERROR,
     payload: {error}
-})
+});
+
+export const adminGetCards = data => ({
+    type: ADMIN_GET_CARDS,
+    payload: {data}
+});
+
+export const adminCards = data => ({
+    type: ADMIN_CARDS,
+    payload: {data}
+});
+
+export const adminCardError = error => ({
+    type: ADMIN_CARDS_ERROR,
+    payload: {error}
+});

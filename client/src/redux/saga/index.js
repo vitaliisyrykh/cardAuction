@@ -4,13 +4,15 @@ import {
     SIGN_IN_LOGIN,
     ADMIN_GET_USERS,
     ADMIN_USER_DELETE,
-    ADMIN_USER_UPDATE
+    ADMIN_USER_UPDATE,
+    ADMIN_GET_CARDS,
 } from '../actions/actionType';
 import {signUpSaga, signInSaga} from './auth';
 import {
     adminGetUsersSaga,
     adminDeleteUserSaga,
-    adminUpdateUserSaga
+    adminUpdateUserSaga,
+    adminGetCardsSaga,
 } from './admin';
 
 
@@ -20,6 +22,7 @@ function* rootSaga() {
     yield takeLatest(ADMIN_GET_USERS, adminGetUsersSaga);
     yield takeLatest(ADMIN_USER_DELETE, adminDeleteUserSaga);
     yield takeLatest(ADMIN_USER_UPDATE, adminUpdateUserSaga);
+    yield takeLatest(ADMIN_GET_CARDS, adminGetCardsSaga)
 }
 
 export default rootSaga;

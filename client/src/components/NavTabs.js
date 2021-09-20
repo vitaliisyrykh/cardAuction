@@ -15,6 +15,7 @@ function NavTabs(props) {
                 centered
             >
                 <Tab label="Users" to="/admin/users" component={Link}/>
+                <Tab label="Cards" to="/admin/cards" component={Link}/>
             </Tabs>
         </div>
     )

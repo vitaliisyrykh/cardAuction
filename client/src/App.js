@@ -7,6 +7,7 @@ import SignIn from "./components/auth/SignIn";
 import Admin from "./layout/Admin";
 import Users from "./components/Users/Users";
 import browserHistory from "./browserHistory";
+import Cards from "./components/adminCards/Cards";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
                 <Route exact path="/auth/signin" component={SignIn}/>
                 <AdminRoute role={constants.adminRole} exact path="/admin" component={Admin}/>
                 <AdminRoute role={constants.adminRole} exact path="/admin/users" component={Users}/>
+                <AdminRoute role={constants.adminRole} exact path="/admin/cards" component={Cards}/>
             </Switch>
         </Route>
     );

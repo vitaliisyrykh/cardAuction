@@ -20,7 +20,7 @@ class UserRepository {
       const allUsers = await UserModel.fetchPage({
         limit,
         offset,
-        withRelated: ["raiting"],
+        //withRelated: ["raiting"],
       }).then((resData) => {
         return resData.models.map((m) => {
           return { name: m.attributes.name, id: m.attributes.id, email:m.attributes.email };

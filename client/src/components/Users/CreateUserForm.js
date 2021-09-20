@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {Button} from "@mui/material";
 import {signUpSchema} from "../../validation/validationSchema";
 import {adminUserCreate} from "../../redux/actions/creatorAdminActions";
-import InputForm from '../auth/InputForm';
+import FormInput from '../auth/FormInput';
 
 const CreateUserForm = props => {
     const {adminId, createUserHandler} = props;
@@ -25,9 +25,9 @@ const CreateUserForm = props => {
                 validationSchema={signUpSchema}
             >
                 <Form>
-                    <InputForm name="name" placeholder="enter user name"/>
-                    <InputForm name="email" placeholder="enter user email"/>
-                    <InputForm name="password" placeholder="enter user password"/>
+                    <FormInput name="name" placeholder="enter user name"/>
+                    <FormInput name="email" placeholder="enter user email"/>
+                    <FormInput name="password" placeholder="enter user password"/>
                     <Button variant="outlined" type="submit">
                         Confirm
                     </Button>

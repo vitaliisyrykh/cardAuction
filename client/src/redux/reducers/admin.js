@@ -10,13 +10,17 @@ import {
     ADMIN_USER_UPDATE_ERROR,
     ADMIN_USER_CREATE,
     ADMIN_USER_CREATED,
-    ADMIN_USER_CREATE_ERROR
+    ADMIN_USER_CREATE_ERROR,
+    ADMIN_GET_CARDS,
+    ADMIN_CARDS,
+    ADMIN_CARDS_ERROR
 } from '../actions/actionType'
 
 const initialState = {
     users: [],
     isFetching: false,
-    error: null
+    error: null,
+    cards:[],
 };
 
 export default function (state = initialState, action) {
@@ -118,6 +122,29 @@ export default function (state = initialState, action) {
             }
         }
         case ADMIN_USER_CREATE_ERROR: {
+            const {payload: {error}} = action;
+            return {
+                ...state,
+                isFetching: false,
+                error
+            }
+        }
+        case ADMIN_GET_CARDS:{
+            return {
+                ...state,
+                isFetching: true
+            }
+        }
+        case ADMIN_CARDS: {
+            const {cards} = state;
+            const {payload: {newCards}} = action;
+            return {
+                ...state,
+                isFetching: false,
+                users: [...cards,...newCards]
+            }
+        }
+        case ADMIN_CARDS_ERROR: {
             const {payload: {error}} = action;
             return {
                 ...state,

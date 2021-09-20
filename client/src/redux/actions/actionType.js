@@ -1,13 +1,3 @@
-/* const a = {
-    SIGN_UP_REGISTRATION: "SignUp:Request",
-    SIGN_UP_CREATED_USER: "SignUp:CreatedUser",
-    SIGN_UP_ERROR: "SignUp:Error",
-    SIGN_IN_LOGIN: "SignIn:Login",
-    SIGN_IN_USER: "SignIn:User",
-    SIGN_IN_ERROR: "SignIn:Error"
-}
-export default a;*/
-
 export const SIGN_UP_REGISTRATION = "SignUp:Request";
 export const SIGN_UP_CREATED_USER = "SignUp:CreatedUser";
 export const SIGN_UP_ERROR = "SignUp:Error";
@@ -26,6 +16,10 @@ export const ADMIN_USER_UPDATE_ERROR = "AdminUser: UpdatedError";
 export const ADMIN_USER_CREATE = "AdminUser: Create";
 export const ADMIN_USER_CREATED = "AdminUser: Created";
 export const ADMIN_USER_CREATE_ERROR = "AdminUser: CreateError";
+export const ADMIN_GET_CARDS = "AdminCards: GetCards";
+export const ADMIN_CARDS = "AdminCards: Cards";
+export const ADMIN_CARDS_ERROR = "AdminCards: CardsError";
+
 
 
 

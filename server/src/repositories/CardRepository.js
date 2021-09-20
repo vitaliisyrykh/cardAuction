@@ -1,4 +1,3 @@
-import CardsModel from "../models/CardModel";
 import CardModel from "../models/CardModel";
 import UserModel from "../models/UserModel";
 
@@ -30,7 +29,7 @@ class CardRepository {
   }
   async findAll(pageNum, pageSize) {
     try {
-      const allCards = await new CardModel()
+      const allCards = await CardModel
         .fetchPage({
           page: pageNum,
           pageSize,
