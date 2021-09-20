@@ -4,7 +4,7 @@ import admin from './admin'
 
 const rootReducer = combineReducers({
     auth,
-
+    admin,
 })
 
 export default rootReducer;

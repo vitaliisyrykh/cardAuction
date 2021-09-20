@@ -23,8 +23,9 @@ class UserController {
     }
   }
   async findAll(req, res, next) {
+    const {pagination} = req;
     try {
-      const users = await UserService.findAll();
+      const users = await UserService.findAll(pagination);
 
       if (users) {
         return success(res, users);
@@ -66,14 +67,13 @@ class UserController {
   }
   async delete(req, res, next) {
     const {
-      params: { userId },
-    } = req;
+      body:{id}
+    }= req;
     try {
-      const deletedUser = await UserService.delete(userId);
+      const deletedUser = await UserService.delete(id);
       if (deletedUser) {
-        return successNoContent(res, deletedUser);
+        return success(res, deletedUser);
       }
-
       return forBiddenError(res, "Cannot delete user");
     } catch (error) {
       next(error);

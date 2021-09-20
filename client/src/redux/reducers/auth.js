@@ -26,7 +26,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isFetching: false,
-                users: data
+                user: data
             }
         }
         case SIGN_UP_ERROR: {

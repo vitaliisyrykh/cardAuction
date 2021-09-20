@@ -15,15 +15,15 @@ class UserRepository {
       return error;
     }
   }
-  async findAll(pageNum, pageSize) {
+  async findAll({limit,offset}) {
     try {
       const allUsers = await UserModel.fetchPage({
-        page: 1,
-        pageSize: 5,
-        //withRelated: ["raiting"],
+        limit,
+        offset,
+        withRelated: ["raiting"],
       }).then((resData) => {
         return resData.models.map((m) => {
-          return { name: m.attributes.name, id: m.attributes.id };
+          return { name: m.attributes.name, id: m.attributes.id, email:m.attributes.email };
         });
       });
       if (allUsers.length === 0) {
@@ -59,7 +59,7 @@ class UserRepository {
   async delete(userId) {
     try {
       const deletedUser = await new UserModel({ id: userId }).destroy();
-      return deletedUser ? { isDeletedUser: true } : { isDeletedUser: false };
+      return Object.keys(deletedUser.attributes).length === 0 ? { deletedId: userId } : { isDeletedUser: false };
     } catch (error) {
       return error;
     }
@@ -70,7 +70,7 @@ class UserRepository {
         method: "update",
         patch: true,
       });
-      const { id, name } = updatedUser.attributes;
+      const { id, name, email } = updatedUser.attributes;
       return { id, name };
     } catch (error) {
       return error;
