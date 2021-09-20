@@ -37,32 +37,32 @@ export default function (state = initialState, action) {
             }
         }
         case ADMIN_USERS_ERROR: {
-            const {payload:{error}} = action;
+            const {payload: {error}} = action;
             return {
                 ...state,
                 isFetching: false,
                 error
             }
         }
-        case ADMIN_USER_UPDATE:{
-            return{
+        case ADMIN_USER_UPDATE: {
+            return {
                 ...state,
                 isFetching: true
             }
         }
-        case ADMIN_USER_UPDATED:{
-            const {users}=state;
-            const {payload:{data:updatedUser}} = action;
-            const updatedUsers = users.map(u=>u.id === updatedUser.id ? updatedUser : u);
+        case ADMIN_USER_UPDATED: {
+            const {users} = state;
+            const {payload: {data: updatedUser}} = action;
+            const updatedUsers = users.map(u => u.id === updatedUser.id ? updatedUser : u);
             return {
                 ...state,
                 isFetching: false,
-                users : [...updatedUsers]
+                users: [...updatedUsers]
             }
         }
 
-        case ADMIN_USER_UPDATE_ERROR:{
-            const {payload:{error}} = action
+        case ADMIN_USER_UPDATE_ERROR: {
+            const {payload: {error}} = action
             return {
                 ...state,
                 isFetching: false,
@@ -127,9 +127,9 @@ export default function (state = initialState, action) {
         }
         default:
             return state;
-        }
-
     }
+
+}
 
 
 
