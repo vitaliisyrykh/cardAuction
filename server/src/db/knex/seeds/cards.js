@@ -1,21 +1,28 @@
-import {getCharacters} from "rickmortyapi";
-const cards = async () =>{
-    const cards =  await getCharacters();
-    const {data} = cards;
-    console.log(cards.data.results)
+const {getCharacters} = require('rickmortyapi')
 
-}
-cards();
 
-/*exports.seed = function(knex) {
+exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
+  return knex('cards')
+      .then(function (){
+          const cards = async () => {
+              const {data} = await getCharacters();
+              const cards = data.results.map(c=>{
+                  return {
+                      name: c.name,
+                      episode_id: Math.floor(Math.random()*41)+1,
+                      gender_id: Math.floor(Math.random() *4)+1,
+                      origin:c.origin,
+                      type: c.type,
+                      image: c.image,
+                      url: c.url
+                  }
+              })
+              return cards
+          }
+          return cards()
+      })
+    .then(function (cards) {
+        return knex('cards').insert(cards);
     });
-};*/
+};

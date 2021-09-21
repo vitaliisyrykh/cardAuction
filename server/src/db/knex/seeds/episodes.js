@@ -1,13 +1,23 @@
+const {getEpisodes} = require('rickmortyapi');
 
-exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
-    });
-};
+exports.seed = function (knex) {
+    return knex('episodes')
+        .then(() => {
+            const episodes = async () => {
+                const {data} = await getEpisodes();
+                const episodes = data.results.map(e => {
+                    return {
+                        name: e.name,
+                        air_date: e.air_date,
+                        url: e.url
+                    }
+                })
+                return episodes;
+            }
+            return episodes()
+        })
+        .then(function (data) {
+
+            return knex('episodes').insert(data);
+        })};
+

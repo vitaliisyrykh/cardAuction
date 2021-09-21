@@ -1,13 +1,23 @@
-
+const {getLocations} = require('rickmortyapi');
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
+    return knex('locations')
+      .then(function (){
+          const locations = async () => {
+              const {data} = await getLocations();
+              const locations = data.results.map(l=>{
+                  return {
+                      card_id: Math.floor(Math.random() * 671) +1,
+                      name: l.name,
+                      type: l.type,
+                      dimension: l.dimension,
+                      url:l.url
+                  }
+              })
+              return locations
+          }
+          return locations()
+      })
+      .then(function (locations) {
+        return knex('locations').insert(locations);
     });
 };
