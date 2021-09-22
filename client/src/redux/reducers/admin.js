@@ -13,14 +13,17 @@ import {
     ADMIN_USER_CREATE_ERROR,
     ADMIN_GET_CARDS,
     ADMIN_CARDS,
-    ADMIN_CARDS_ERROR
+    ADMIN_CARDS_ERROR,
+    ADMIN_CARD_UPDATE,
+    ADMIN_CARD_UPDATED,
+    ADMIN_CARD_UPDATE_ERROR
 } from '../actions/actionType'
 
 const initialState = {
     users: [],
     isFetching: false,
     error: null,
-    cards:[],
+    cards: [],
 };
 
 export default function (state = initialState, action) {
@@ -37,7 +40,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isFetching: false,
-                users: [...users,...newUsers]
+                users: [...users, ...newUsers]
             }
         }
         case ADMIN_USERS_ERROR: {
@@ -129,7 +132,7 @@ export default function (state = initialState, action) {
                 error
             }
         }
-        case ADMIN_GET_CARDS:{
+        case ADMIN_GET_CARDS: {
             return {
                 ...state,
                 isFetching: true
@@ -137,14 +140,38 @@ export default function (state = initialState, action) {
         }
         case ADMIN_CARDS: {
             const {cards} = state;
-            const {payload: {newCards}} = action;
+            const {payload: {data: newCards}} = action;
             return {
                 ...state,
                 isFetching: false,
-                users: [...cards,...newCards]
+                cards: [...cards, ...newCards]
             }
         }
         case ADMIN_CARDS_ERROR: {
+            const {payload: {error}} = action;
+            return {
+                ...state,
+                isFetching: false,
+                error
+            }
+        }
+        case ADMIN_CARD_UPDATE: {
+            return {
+                ...state,
+                isFetching: true,
+            }
+        }
+        case ADMIN_CARD_UPDATED: {
+            const {cards} = state;
+            const {payload: {data: updatedCard}} = action;
+            const updatedCards = cards.map(c => c.id === updatedCard.id ? updatedCard : c);
+            return {
+                ...state,
+                isFetching: false,
+                cards: [...updatedCards]
+            }
+        }
+        case ADMIN_CARD_UPDATE_ERROR: {
             const {payload: {error}} = action;
             return {
                 ...state,

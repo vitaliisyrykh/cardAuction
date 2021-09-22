@@ -19,6 +19,9 @@ export const ADMIN_USER_CREATE_ERROR = "AdminUser: CreateError";
 export const ADMIN_GET_CARDS = "AdminCards: GetCards";
 export const ADMIN_CARDS = "AdminCards: Cards";
 export const ADMIN_CARDS_ERROR = "AdminCards: CardsError";
+export const ADMIN_CARD_UPDATE = "AdminCard: Update";
+export const ADMIN_CARD_UPDATED = "AdminCard: Updated";
+export const ADMIN_CARD_UPDATE_ERROR = "AdminCard: UpdateError";
 
 
 

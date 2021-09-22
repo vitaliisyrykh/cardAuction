@@ -89,3 +89,18 @@ export const adminCardError = error => ({
     type: ADMIN_CARDS_ERROR,
     payload: {error}
 });
+
+export const adminCardUpdate = data => ({
+    type: ADMIN_USER_UPDATE,
+    payload: {data}
+});
+
+export const adminCardUpdated = data => ({
+    type: ADMIN_USER_UPDATED,
+    payload: {data}
+});
+
+export const adminCardUpdateError = error => ({
+    type:ADMIN_USER_UPDATE_ERROR,
+    payload:{error}
+});

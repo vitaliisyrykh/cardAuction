@@ -23,9 +23,11 @@ class CardController {
   }
 
   async findAll(req, res, next) {
+    const {query:pagination} = req;
     try {
-      const cards = await CardService.findAll();
-      if (allCards.length !== 0) {
+      const cards = await CardService.findAll(pagination);
+
+      if (cards.length !== 0) {
         return success(res, cards);
       }
       return notFoundError(res, "Not found");
@@ -69,7 +71,8 @@ class CardController {
         params: { cardId },
         body,
       } = req;
-      const updatedCard = await CardService.updateCard(cardId, body);
+      const updatedCard = await CardService.update(cardId, body);
+      console.log(updatedCard)
       if (updatedCard) {
         return success(res, updatedCard);
       }

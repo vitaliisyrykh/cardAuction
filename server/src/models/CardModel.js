@@ -9,7 +9,7 @@ import GenderModel from './GenderModel';
 
 const CardsModel = bookshelf.model("Card", {
   tableName: "cards",
-  episode() {
+  episodes() {
     return this.belongsTo(EpisodeModel);
   },
   locations() {

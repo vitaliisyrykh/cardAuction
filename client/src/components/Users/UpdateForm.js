@@ -18,7 +18,7 @@ function UpdateForm(props) {
                 email
             }} onSubmit={onSubmit}>
                 <Form>
-                    <FormInput name="name" placegolder="Enter new name"/>
+                    <FormInput name="name" placeholder="Enter new name"/>
                     <FormInput name="email" placeholder="Enter new email"/>
                     <button type="submit">Confirm</button>
                 </Form>

@@ -4,8 +4,8 @@ class CardService {
   create(body) {
     return CardsRepository.create(body);
   }
-  findAll() {
-    return CardsRepository.findAll();
+  findAll(pagination) {
+    return CardsRepository.findAll(pagination);
   }
   findOne(cardId) {
     return CardsRepository.findOne(cardId);

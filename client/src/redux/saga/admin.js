@@ -10,13 +10,16 @@ import {
     adminUserCreateError,
     adminCards,
     adminCardError,
+    adminCardUpdated,
+    adminCardUpdateError,
 } from "../actions/creatorAdminActions";
 import {
     adminGetUsers,
     adminDeleteUser,
     adminUpdateUser,
     adminUserCreate,
-    adminGetcards,
+    adminGetCards,
+    adminUpdateCard,
 } from '../../api/adminApi';
 
 export function* adminGetUsersSaga(action) {
@@ -63,9 +66,19 @@ export function* adminUserCreateSaga(action) {
 export function* adminGetCardsSaga(action) {
     const {payload: {data}} = action;
     try {
-        const {data: {data: cards}} = yield adminGetcards(data);
+        const {data: {data: cards}} = yield adminGetCards(data);
         yield put(adminCards(cards));
     } catch (error) {
         yield put(adminCardError(error));
+    }
+}
+
+export function* adminUpdateCardSaga(action) {
+    const {payload: {data}} = action;
+    try {
+        const {data: {data: updatedCard}} = yield adminUpdateCard(data);
+        yield put(adminCardUpdated(updatedCard));
+    } catch (error) {
+        yield put(adminCardUpdateError(error))
     }
 }
